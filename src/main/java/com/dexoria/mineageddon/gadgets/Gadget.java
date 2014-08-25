@@ -7,6 +7,7 @@ import java.util.logging.Level;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.event.HandlerList;
+import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
 
 import com.dexoria.mineageddon.Mineageddon;
@@ -25,7 +26,8 @@ public class Gadget {
 		itemToGadgetIdList = new HashMap<String,String>();
 		gadgets = new HashMap<String,Gadget>();
 		
-		new ThorHammer();
+		new HeavyHammer();
+		
 		nullGadget = null;
 	}
 	
@@ -83,6 +85,15 @@ public class Gadget {
 	public boolean onPlayerInteractEvent(PlayerInteractEvent event) {
 		if(Debug.ON) {
 			Mineageddon.getLoggerStaticly().log(Level.INFO,"onPlayerInteractEvent invoked for '" + name + "' by '" + event.getPlayer().getName() + "'.");
+		}
+		
+		return true;
+		
+	}
+	
+	public boolean onEntityDamageByEntityBeingDamager(EntityDamageByEntityEvent event) {
+		if(Debug.ON) {
+			Mineageddon.getLoggerStaticly().log(Level.INFO,"onEntityDamageByEntityBeingDamager invoked for '" + name + "' by '" + event.getDamager().toString() + "'.");
 		}
 		
 		return true;
