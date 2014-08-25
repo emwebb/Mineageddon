@@ -17,6 +17,7 @@ public class Gadget {
 	private static Map<String,String> itemToGadgetIdList;
 	private static Map<String,Gadget> gadgets;
 	private static GadgetEventListener listener;
+	private static Gadget nullGadget;
 	public static void onEnable() {
 		listener = new GadgetEventListener();
 		Bukkit.getServer().getPluginManager().registerEvents(listener, Mineageddon.getInstance());
@@ -24,7 +25,8 @@ public class Gadget {
 		itemToGadgetIdList = new HashMap<String,String>();
 		gadgets = new HashMap<String,Gadget>();
 		
-		Gadget gadget = new Gadget("Test Gadget", Material.APPLE, 0);
+		new ThorHammer();
+		nullGadget = null;
 	}
 	
 	public static void onDisable() {
@@ -34,21 +36,40 @@ public class Gadget {
 		
 		HandlerList.unregisterAll(listener);
 		listener = null;
+		nullGadget = null;
 	}
 	
 
 	public static boolean isVanillaItemGadget(String vanillaID) {
-		return itemToGadgetIdList.containsKey(vanillaID);
+		return itemToGadgetIdList.containsKey(vanillaID) || itemToGadgetIdList.containsKey(vanillaID.split(":")[0]); 
 	}
 	
 	public static Gadget getGadgetFromVanillaID(String vanillaID) {
-		return gadgets.get(itemToGadgetIdList.get(vanillaID));
+		if(itemToGadgetIdList.containsKey(vanillaID)) {
+			return gadgets.get(itemToGadgetIdList.get(vanillaID));
+		} else if(itemToGadgetIdList.containsKey(vanillaID.split(":")[0])) {
+			return gadgets.get(itemToGadgetIdList.get(vanillaID.split(":")[0]));
+		} else {
+			return nullGadget;
+		}
 	}
 	
 	private final String name;
 	private final String vanillaID;
 	public Gadget(String name, Material vanillaBoundItemMatrial, int vanillaBoundItemMeta) {
 		String vanillaID = vanillaBoundItemMatrial.name() + ":" + vanillaBoundItemMeta;
+		if(Debug.ON) {
+			Mineageddon.getLoggerStaticly().log(Level.INFO,"Added gadget named '" + name + "' and bound it to '" + vanillaID + "'.");
+		}
+		
+		this.name = name;
+		this.vanillaID = vanillaID;
+		itemToGadgetIdList.put(vanillaID, name);
+		gadgets.put(name, this);
+	}
+	
+	public Gadget(String name, Material vanillaBoundItemMatrial) {
+		String vanillaID = vanillaBoundItemMatrial.name();
 		if(Debug.ON) {
 			Mineageddon.getLoggerStaticly().log(Level.INFO,"Added gadget named '" + name + "' and bound it to '" + vanillaID + "'.");
 		}
