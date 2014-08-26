@@ -6,6 +6,7 @@ import java.util.logging.Level;
 
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
+import org.bukkit.entity.Player;
 import org.bukkit.event.HandlerList;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
@@ -18,26 +19,30 @@ public class Gadget {
 	private static Map<String,String> itemToGadgetIdList;
 	private static Map<String,Gadget> gadgets;
 	private static GadgetEventListener listener;
+	private static GadgetScheduler scheduler;
 	private static Gadget nullGadget;
 	public static void onEnable() {
 		listener = new GadgetEventListener();
 		Bukkit.getServer().getPluginManager().registerEvents(listener, Mineageddon.getInstance());
 		
+		
 		itemToGadgetIdList = new HashMap<String,String>();
 		gadgets = new HashMap<String,Gadget>();
 		
 		new HeavyHammer();
-		
+		scheduler = new GadgetScheduler();
+		scheduler.onEnable();
 		nullGadget = null;
 	}
 	
 	public static void onDisable() {
-		
+		scheduler.onDisbale();
 		itemToGadgetIdList.clear();
 		gadgets.clear();
 		
 		HandlerList.unregisterAll(listener);
 		listener = null;
+		scheduler = null;
 		nullGadget = null;
 	}
 	
@@ -82,21 +87,27 @@ public class Gadget {
 		gadgets.put(name, this);
 	}
 	
-	public boolean onPlayerInteractEvent(PlayerInteractEvent event) {
+	public void onPlayerInteractEvent(PlayerInteractEvent event) {
 		if(Debug.ON) {
 			Mineageddon.getLoggerStaticly().log(Level.INFO,"onPlayerInteractEvent invoked for '" + name + "' by '" + event.getPlayer().getName() + "'.");
 		}
 		
-		return true;
 		
 	}
 	
-	public boolean onEntityDamageByEntityBeingDamager(EntityDamageByEntityEvent event) {
+	public void onEntityDamageByEntityBeingDamager(EntityDamageByEntityEvent event) {
 		if(Debug.ON) {
 			Mineageddon.getLoggerStaticly().log(Level.INFO,"onEntityDamageByEntityBeingDamager invoked for '" + name + "' by '" + event.getDamager().toString() + "'.");
 		}
 		
-		return true;
+		
+	}
+	
+	public void whilePlayerHoldingGadget(Player player, int periodTime) {
+		if(Debug.ON && Debug.SPAM_ALLOWED) {
+			Mineageddon.getLoggerStaticly().log(Level.INFO,"whilePlayerHoldingGadget invoked by '" + player.getName() + "'");
+		}
+		
 		
 	}
 	

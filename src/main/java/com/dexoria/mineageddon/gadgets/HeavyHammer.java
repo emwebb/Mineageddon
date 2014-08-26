@@ -1,10 +1,13 @@
 package com.dexoria.mineageddon.gadgets;
 
 import org.bukkit.Material;
+import org.bukkit.entity.Player;
 import org.bukkit.event.block.Action;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.event.entity.EntityDamageEvent.DamageCause;
 import org.bukkit.event.player.PlayerInteractEvent;
+import org.bukkit.potion.PotionEffect;
+import org.bukkit.potion.PotionEffectType;
 import org.bukkit.util.Vector;
 
 import com.dexoria.mineageddon.perks.Rocket;
@@ -18,31 +21,36 @@ public class HeavyHammer extends Gadget {
 	}
 	
 	@Override
-	public boolean onPlayerInteractEvent(PlayerInteractEvent event) {
+	public void onPlayerInteractEvent(PlayerInteractEvent event) {
 		super.onPlayerInteractEvent(event);
 		if(event.getAction() == Action.LEFT_CLICK_BLOCK) {
 			WorldUtils.createExplosion(event.getPlayer().getWorld(), event.getPlayer(), event.getClickedBlock().getLocation(), 5, false, true);
 			event.getPlayer().damage(10.0, event.getPlayer());
 		}
-		
-		return true;
 	}
 	
 	@Override
-	public boolean onEntityDamageByEntityBeingDamager(EntityDamageByEntityEvent event) {
+	public void onEntityDamageByEntityBeingDamager(EntityDamageByEntityEvent event) {
 		super.onEntityDamageByEntityBeingDamager(event);
 		if(event.getCause() == DamageCause.ENTITY_ATTACK ) {
 			if(event.getEntity().isOnGround()){
 				Rocket rocketeer = new Rocket(event.getEntity(),new Vector(0,1,0),1);
 	    		Schedulable.scheduleSyncRepeatingTask(rocketeer,1);
 			} else {
-				Vector vec = new Vector(Math.sin(event.getDamager().getLocation().getYaw() + Math.PI),0,Math.cos(event.getDamager().getLocation().getYaw() + Math.PI));
+				Vector vec = new Vector(Math.cos(Math.toRadians(event.getDamager().getLocation().getYaw())+(Math.PI/2)),0,Math.sin(Math.toRadians(event.getDamager().getLocation().getYaw())+(Math.PI/2)));
 				Rocket rocketeer = new Rocket(event.getEntity(), vec,1);
 	    		Schedulable.scheduleSyncRepeatingTask(rocketeer,1);
 			}
 			
 		}
-		return true;
 		
 	}
+	
+	@Override
+	public void whilePlayerHoldingGadget(Player player, int periodTime) {
+		super.whilePlayerHoldingGadget(player, periodTime);
+		player.removePotionEffect(PotionEffectType.SLOW_DIGGING);
+		player.addPotionEffect(new PotionEffect(PotionEffectType.SLOW_DIGGING, 50, 10));
+	}
+	
 }
