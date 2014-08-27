@@ -14,6 +14,14 @@ import com.dexoria.mineageddon.utils.FileUtils;
 
 public class Config {
 	private static final String ALLOWED_WORLDS_ID = "allowedWorlds";
+	private static final String DATABASE_HOST = "database.hostname";
+
+	private static final String DATABASE_PORT = "database.port";
+
+	private static final String DATABASE_DB = "database.db";
+
+	private static final String DATABASE_USERNAME = "database.username";
+	private static final String DATABASE_PASSWORD = "database.password";
 	
 	private File configFile;
 	private FileConfiguration config;
@@ -81,4 +89,25 @@ public class Config {
 	public boolean isAllowedWorld(String world) {
 		return  getAllowedWorlds().contains(world);
 	}
+	
+	public String getDBHostName() {
+		return config.getString(DATABASE_HOST);
+	}
+	
+	public String getDBDatabase() {
+		return config.getString(DATABASE_DB);
+	}
+	
+	public String getDBPort() {
+		return config.getString(DATABASE_PORT);
+	}
+	
+	public String getDBUsername() {
+		return config.getString(DATABASE_USERNAME);
+	}
+	
+	public String getDBPassword() {
+		return config.getString(DATABASE_PASSWORD);
+	}
+	
 }

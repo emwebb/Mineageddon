@@ -24,12 +24,24 @@ public class CommandHandler implements CommandExecutor {
 				return true;
 			case "give" :
 				give(sender, cmd, label, args);
+				return true;
+			case "score" :
+				score(sender, cmd, label, args);
+				return true;
 			}
 			return true;
 		}
 		return false;
 	}
 	
+	private void score(CommandSender sender, Command cmd, String label,
+			String[] args) {
+		if(sender instanceof Player) {
+			sender.sendMessage("Your score is: " + Mineageddon.getScoreSystem().getPlayerScore(((Player) sender).getUniqueId().toString()));
+		}
+		
+	}
+
 	private void give(CommandSender sender, Command cmd, String label,
 			String[] args) {
 		if(args.length != 3) {

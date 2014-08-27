@@ -31,6 +31,8 @@ public class Gadget {
 		gadgets = new HashMap<String,Gadget>();
 		
 		new HeavyHammer();
+		new PhoenixFeather();
+		new WitherOrb();
 		scheduler = new GadgetScheduler();
 		scheduler.onEnable();
 		nullGadget = null;
