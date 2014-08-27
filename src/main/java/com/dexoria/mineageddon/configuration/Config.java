@@ -77,4 +77,8 @@ public class Config {
 			setAllowedWorlds(allowedWorlds);
 		}	
 	}
+	
+	public boolean isAllowedWorld(String world) {
+		return  getAllowedWorlds().contains(world);
+	}
 }

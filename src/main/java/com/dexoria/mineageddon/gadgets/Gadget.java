@@ -10,6 +10,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.HandlerList;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
+import org.bukkit.inventory.ItemStack;
 
 import com.dexoria.mineageddon.Mineageddon;
 import com.dexoria.mineageddon.references.Debug;
@@ -61,6 +62,18 @@ public class Gadget {
 		}
 	}
 	
+	public static Gadget getGadget(String gadgetName) {
+		if(gadgets.containsKey(gadgetName)) {
+			return gadgets.get(gadgetName);
+		} else {
+			return nullGadget;
+		}
+	}
+	
+	public static boolean isValidGadgetName(String gadgetName) {
+		return gadgets.containsKey(gadgetName);
+	}
+	
 	private final String name;
 	private final String vanillaID;
 	public Gadget(String name, Material vanillaBoundItemMatrial, int vanillaBoundItemMeta) {
@@ -109,6 +122,11 @@ public class Gadget {
 		}
 		
 		
+	}
+	
+	public ItemStack createItem() {
+		ItemStack item = new ItemStack(Material.AIR);
+		return item;
 	}
 	
 }

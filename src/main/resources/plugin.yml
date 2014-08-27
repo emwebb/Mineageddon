@@ -1,3 +1,14 @@
 name: Mineageddon
 main: com.dexoria.mineageddon.Mineageddon
 version: 0.0.1
+commands:
+  mineageddon:
+    description: Command for mineageddon.
+    usage: /mineageddon
+    permission: mineageddon.admin
+    permission-message: You don't have permission to use this command
+permissions:
+  mineageddon.admin:
+    default: op
+  mineageddon.basic:
+    default: true

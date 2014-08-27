@@ -1,11 +1,17 @@
 package com.dexoria.mineageddon.gadgets;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.event.block.Action;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.event.entity.EntityDamageEvent.DamageCause;
 import org.bukkit.event.player.PlayerInteractEvent;
+import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 import org.bukkit.util.Vector;
@@ -17,7 +23,7 @@ import com.dexoria.mineageddon.utils.WorldUtils;
 public class HeavyHammer extends Gadget {
 
 	public HeavyHammer() {
-		super("Heavy Hammer", Material.DIAMOND_AXE);
+		super("HEAVYHAMMER", Material.DIAMOND_AXE);
 	}
 	
 	@Override
@@ -51,6 +57,20 @@ public class HeavyHammer extends Gadget {
 		super.whilePlayerHoldingGadget(player, periodTime);
 		player.removePotionEffect(PotionEffectType.SLOW_DIGGING);
 		player.addPotionEffect(new PotionEffect(PotionEffectType.SLOW_DIGGING, 50, 10));
+	}
+	
+	@Override
+	public ItemStack createItem() {
+		ItemStack item = new ItemStack(Material.DIAMOND_AXE);
+		ItemMeta meta = item.getItemMeta();
+		meta.setDisplayName(ChatColor.AQUA + "Heavy Hammer");
+		List<String> lore = new ArrayList<String>();
+		lore.add(ChatColor.GREEN + "Hit entity to propel entity.");
+		lore.add(ChatColor.GREEN + "Hit block to create explosion.");
+		meta.setLore(lore);
+		item.setItemMeta(meta);
+		item.setAmount(1);
+		return item;
 	}
 	
 }
