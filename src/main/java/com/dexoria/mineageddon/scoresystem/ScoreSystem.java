@@ -11,30 +11,15 @@ import com.dexoria.mineageddon.Mineageddon;
 import com.dexoria.mineageddon.mysql.MySQL;
 
 public class ScoreSystem {
-	private MySQL scoreSQL;
-	private Connection connection;
 	public void onEnable() {
-		scoreSQL = new MySQL(Mineageddon.getInstance(),
-				Mineageddon.getConfigStaticly().getDBHostName(),
-				Mineageddon.getConfigStaticly().getDBPort(),
-				Mineageddon.getConfigStaticly().getDBDatabase(),
-				Mineageddon.getConfigStaticly().getDBUsername(),
-				Mineageddon.getConfigStaticly().getDBPassword());
-
-		try {
-			connection = scoreSQL.openConnection();
-		} catch (ClassNotFoundException | SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		
+	
 		
 	}
 	
 	public void onDisable() {
 		try {
-			connection.close();
-
-			scoreSQL.closeConnection();
+			Mineageddon.getMySQL().closeConnection();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -42,11 +27,8 @@ public class ScoreSystem {
 	}
 	
 	public boolean playerExists(String playerUUID) {
-		Statement statement = null;
 		try {
-			ResultSet res;
-			statement = connection.createStatement();
-			res = statement.executeQuery("SELECT * FROM playerScore WHERE playerUUID = '" + playerUUID + "';");
+			ResultSet res = Mineageddon.getMySQL().querySQL("SELECT * FROM playerScore WHERE playerUUID = '" + playerUUID + "';");
 			
 			if(!res.next()) {
 				return false;
@@ -54,7 +36,7 @@ public class ScoreSystem {
 				return true;
 			}
 			
-		} catch (SQLException e) {
+		} catch (SQLException | ClassNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
@@ -65,9 +47,8 @@ public class ScoreSystem {
 	public void addPlayer(String playerUUID){
 		try {
 
-			Statement statement = connection.createStatement();
-			statement.execute("INSERT INTO playerScore (`ID`, `playerUUID`, `score`) VALUES (NULL, '" + playerUUID + "', '2000');");
-		} catch (SQLException e) {
+			Mineageddon.getMySQL().updateSQL("INSERT INTO playerScore (`ID`, `playerUUID`, `score`) VALUES (NULL, '" + playerUUID + "', '2000');");
+		} catch (SQLException | ClassNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
@@ -99,12 +80,10 @@ public class ScoreSystem {
 	
 	public int getPlayerScore(String playerUUID) {
 		try {
-			ResultSet res;
-			Statement statement = connection.createStatement();
-			res = statement.executeQuery("SELECT * FROM playerScore WHERE playerUUID = '" + playerUUID + "';");
+			ResultSet res = Mineageddon.getMySQL().querySQL("SELECT * FROM playerScore WHERE playerUUID = '" + playerUUID + "';");
 			res.next();
 			return res.getInt("score");
-		} catch (SQLException e) {
+		} catch (SQLException | ClassNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
@@ -114,9 +93,8 @@ public class ScoreSystem {
 	public void setPlayerScore(String playerUUID, int score) {
 
 		try {
-			Statement statement = connection.createStatement();
-			statement.executeUpdate("UPDATE playerScore SET score='" + score + "' WHERE playerUUID='" + playerUUID + "';");
-		} catch (SQLException e) {
+			Mineageddon.getMySQL().updateSQL("UPDATE playerScore SET score='" + score + "' WHERE playerUUID='" + playerUUID + "';");
+		} catch (SQLException | ClassNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}

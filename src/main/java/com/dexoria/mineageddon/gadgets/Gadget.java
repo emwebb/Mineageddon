@@ -33,6 +33,7 @@ public class Gadget {
 		new HeavyHammer();
 		new PhoenixFeather();
 		new WitherOrb();
+		new RyanStone();
 		scheduler = new GadgetScheduler();
 		scheduler.onEnable();
 		nullGadget = null;

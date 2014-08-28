@@ -13,7 +13,7 @@ public class CommandHandler implements CommandExecutor {
 
 	public boolean onCommand(CommandSender sender, Command cmd, String label,
 			String[] args) {
-		if(cmd.getName().equalsIgnoreCase("mineageddon")){
+		if(cmd.getName().equalsIgnoreCase("mineageddon") || cmd.getName().equalsIgnoreCase("mg")){
 			if(args.length == 0) {
 				help(sender, cmd, label, args);
 				return true;
