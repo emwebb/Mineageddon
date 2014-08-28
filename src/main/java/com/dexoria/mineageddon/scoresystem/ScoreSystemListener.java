@@ -2,8 +2,6 @@ package com.dexoria.mineageddon.scoresystem;
 
 import java.util.logging.Level;
 
-import net.minecraft.server.v1_7_R1.EntityPlayer;
-
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -35,8 +33,8 @@ public class ScoreSystemListener implements Listener{
 				Player player = event.getEntity().getKiller();
 				String killedName;
 				if(event.getEntity().getType() == EntityType.PLAYER) {
-					killedName = ((EntityPlayer) event.getEntity()).getName();
-					Mineageddon.getScoreSystem().transferScore(player.getUniqueId().toString(), ((EntityPlayer) event.getEntity()).getUniqueID().toString(), 0.1F);
+					killedName = ((Player) event.getEntity()).getName();
+					Mineageddon.getScoreSystem().transferScore(player.getUniqueId().toString(), ((Player) event.getEntity()).getUniqueId().toString(), 0.1F);
 				} else {
 					killedName = event.getEntity().getType().name();
 				}

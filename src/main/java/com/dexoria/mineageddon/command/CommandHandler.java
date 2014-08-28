@@ -44,6 +44,11 @@ public class CommandHandler implements CommandExecutor {
 
 	private void give(CommandSender sender, Command cmd, String label,
 			String[] args) {
+		if(!sender.hasPermission("mineageddon.admin")) {
+			sender.sendMessage("Insufficient permission");
+			return;
+		}
+		
 		if(args.length != 3) {
 			sender.sendMessage("Usage: /mineageddon give [player] [gadget name]");
 			

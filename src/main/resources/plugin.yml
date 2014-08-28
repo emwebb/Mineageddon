@@ -5,7 +5,7 @@ commands:
   mineageddon:
     description: Command for mineageddon.
     usage: /mineageddon
-    permission: mineageddon.admin
+    permission: mineageddon.basic
     permission-message: You don't have permission to use this command
 permissions:
   mineageddon.admin:

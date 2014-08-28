@@ -115,7 +115,7 @@ public class ScoreSystem {
 
 		try {
 			Statement statement = connection.createStatement();
-			statement.executeUpdate("UPDATE playerScore SET score='" + score + "' WHERE playerUUID=" + playerUUID + ";");
+			statement.executeUpdate("UPDATE playerScore SET score='" + score + "' WHERE playerUUID='" + playerUUID + "';");
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
