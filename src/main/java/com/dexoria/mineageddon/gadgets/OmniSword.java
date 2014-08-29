@@ -21,7 +21,7 @@ public class OmniSword extends Gadget {
 	public void whilePlayerHoldingGadget(Player player, int periodTime) {
 		super.whilePlayerHoldingGadget(player, periodTime);
 		player.addPotionEffect(new PotionEffect(PotionEffectType.DAMAGE_RESISTANCE, 15, 2),true);
-		player.addPotionEffect(new PotionEffect(PotionEffectType.JUMP, 15, 2),true);
+		player.addPotionEffect(new PotionEffect(PotionEffectType.JUMP, 15, 4),true);
 		
 	}
 

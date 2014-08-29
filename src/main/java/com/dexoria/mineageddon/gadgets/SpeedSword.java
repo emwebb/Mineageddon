@@ -5,7 +5,10 @@ import java.util.List;
 
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
+import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
+import org.bukkit.event.entity.EntityDamageByEntityEvent;
+import org.bukkit.event.entity.EntityDamageEvent.DamageCause;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.potion.PotionEffect;
@@ -24,6 +27,15 @@ public class SpeedSword extends Gadget {
 		player.addPotionEffect(new PotionEffect(PotionEffectType.SPEED, 15, 2),true);
 		player.addPotionEffect(new PotionEffect(PotionEffectType.JUMP, 15, 2),true);
 		
+	}
+	
+	@Override
+	public void onEntityDamageByEntityBeingDamager(EntityDamageByEntityEvent event) {
+		super.onEntityDamageByEntityBeingDamager(event);
+		if(event.getCause() == DamageCause.ENTITY_ATTACK) {
+			event.setDamage(1.0);
+			
+		}
 	}
 
 	@Override
