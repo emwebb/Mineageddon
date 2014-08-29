@@ -39,6 +39,8 @@ public abstract class Gadget {
 		new DemonSythe();
 		new IronPotion();
 		new OmniSword();
+		new DemonicWardStone();
+		new LightningWand();
 		scheduler = new GadgetScheduler();
 		scheduler.onEnable();
 		nullGadget = null;

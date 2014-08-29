@@ -25,11 +25,13 @@ public class DemonicWardStone extends Gadget {
 	@Override
 	public void whilePlayerHoldingGadget(Player player, int periodTime) {
 		super.whilePlayerHoldingGadget(player, periodTime);
-		player.addPotionEffect(new PotionEffect(PotionEffectType.POISON, 20, 3),true);
+		player.addPotionEffect(new PotionEffect(PotionEffectType.POISON, 20, 9),true);
 		player.addPotionEffect(new PotionEffect(PotionEffectType.SPEED, 20, 3),true);
-		player.addPotionEffect(new PotionEffect(PotionEffectType.DAMAGE_RESISTANCE, 20, 4),true);
+		player.addPotionEffect(new PotionEffect(PotionEffectType.DAMAGE_RESISTANCE, 20, 1),true);
 		player.addPotionEffect(new PotionEffect(PotionEffectType.INCREASE_DAMAGE, 20, 3),true);
 		player.addPotionEffect(new PotionEffect(PotionEffectType.JUMP, 20, 3),true);
+		player.addPotionEffect(new PotionEffect(PotionEffectType.SATURATION, 20, 3),true);
+		player.setHealth(1.0);
 	}
 	
 	@Override

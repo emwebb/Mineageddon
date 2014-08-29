@@ -4,6 +4,18 @@
   <artifactId>Mineageddon</artifactId>
   <version>0.0.1-SNAPSHOT</version>
   <name>Mineageddon</name>
+   <build>
+      <plugins>
+          <plugin>
+              <groupId>org.apache.maven.plugins</groupId>
+              <artifactId>maven-compiler-plugin</artifactId>
+              <configuration>
+                  <source>1.7</source>
+                  <target>1.7</target>
+              </configuration>
+          </plugin>
+      </plugins>
+   </build>
      <repositories>
        <repository>
            <id>bukkit-repo</id>
@@ -15,6 +27,13 @@
 	</repository>
    </repositories>
     <dependencies>
+    <dependency>
+           <groupId>org.bukkit</groupId>
+           <artifactId>bukkit</artifactId>
+           <version>1.7.2-R0.1</version>
+           <type>jar</type>
+           <scope>provided</scope>
+       </dependency>
        <dependency>
            <groupId>org.bukkit</groupId>
            <artifactId>craftbukkit</artifactId>
