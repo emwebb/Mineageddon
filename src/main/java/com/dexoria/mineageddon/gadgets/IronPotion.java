@@ -24,10 +24,15 @@ public class IronPotion extends Gadget{
 	public void onPlayerInteractEvent(PlayerInteractEvent event) {
 		super.onPlayerInteractEvent(event);
 		
-		event.getPlayer().addPotionEffect(new PotionEffect(PotionEffectType.DAMAGE_RESISTANCE, 600, 2),true);
+		event.getPlayer().addPotionEffect(new PotionEffect(PotionEffectType.DAMAGE_RESISTANCE, 600, 1),true);
 		event.getPlayer().addPotionEffect(new PotionEffect(PotionEffectType.SLOW, 600, 2),true);
 			
-		event.getItem().setAmount(event.getItem().getAmount() - 1);
+		
+		if( event.getItem().getAmount() <= 1) {
+			event.getPlayer().getInventory().removeItem(event.getItem());
+		} else {
+			event.getItem().setAmount(event.getItem().getAmount() - 1);
+		}
 	}
 	
 	@Override

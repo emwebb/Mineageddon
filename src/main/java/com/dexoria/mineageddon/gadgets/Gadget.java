@@ -38,6 +38,7 @@ public abstract class Gadget {
 		new PandorasBox();
 		new DemonSythe();
 		new IronPotion();
+		new OmniSword();
 		scheduler = new GadgetScheduler();
 		scheduler.onEnable();
 		nullGadget = null;
