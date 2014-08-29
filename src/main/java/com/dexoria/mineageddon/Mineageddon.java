@@ -21,11 +21,13 @@ public class Mineageddon extends JavaPlugin{
 	private ScoreSystem ss;
 	private Config config;
 	private MySQL sql;
+	private GameManager gm;
 	@Override
 	public void onEnable() {
 		instance = this;
 		config = new Config();
 		config.onEnable();
+		gm = new GameManager();
 		sql = new MySQL(Mineageddon.getInstance(),
 				Mineageddon.getConfigStaticly().getDBHostName(),
 				Mineageddon.getConfigStaticly().getDBPort(),
@@ -49,10 +51,11 @@ public class Mineageddon extends JavaPlugin{
 		try {
 			sql.closeConnection();
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			// Can't allow a crash here so no print stack trace.
+			
 		}
 		config.onDisable();
+		gm = null;
 		sql = null;
 		ss = null;
 		config = null;
@@ -81,5 +84,9 @@ public class Mineageddon extends JavaPlugin{
 	
 	public static MySQL getMySQL() {
 		return instance.sql;
+	}
+	
+	public static GameManager getGameManager() {
+		return instance.gm;
 	}
 }

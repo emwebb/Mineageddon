@@ -15,7 +15,7 @@ import org.bukkit.inventory.ItemStack;
 import com.dexoria.mineageddon.Mineageddon;
 import com.dexoria.mineageddon.references.Debug;
 
-public class Gadget {
+public abstract class Gadget {
 	// Static stuff. 
 	private static Map<String,String> itemToGadgetIdList;
 	private static Map<String,Gadget> gadgets;
@@ -34,6 +34,10 @@ public class Gadget {
 		new PhoenixFeather();
 		new WitherOrb();
 		new RyanStone();
+		new SpeedSword();
+		new PandorasBox();
+		new DemonSythe();
+		new IronPotion();
 		scheduler = new GadgetScheduler();
 		scheduler.onEnable();
 		nullGadget = null;
@@ -71,6 +75,12 @@ public class Gadget {
 		} else {
 			return nullGadget;
 		}
+	}
+	
+	public static Map<String,Gadget> getAllGadget() {
+		
+		return gadgets;
+		
 	}
 	
 	public static boolean isValidGadgetName(String gadgetName) {
@@ -127,9 +137,6 @@ public class Gadget {
 		
 	}
 	
-	public ItemStack createItem() {
-		ItemStack item = new ItemStack(Material.AIR);
-		return item;
-	}
+	public abstract ItemStack createItem();
 	
 }

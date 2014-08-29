@@ -30,18 +30,25 @@ public class ScoreSystemListener implements Listener{
 		
 		if (event.getEntity().getKiller() != null) {
 			if(event.getEntity().getKiller().getType() == EntityType.PLAYER) {
-				Player player = event.getEntity().getKiller();
+				Player killer = event.getEntity().getKiller();
 				String killedName;
 				if(event.getEntity().getType() == EntityType.PLAYER) {
-					killedName = ((Player) event.getEntity()).getName();
-					Mineageddon.getScoreSystem().transferScore(player.getUniqueId().toString(), ((Player) event.getEntity()).getUniqueId().toString(), 0.1F);
+					Player killed = ((Player) event.getEntity());
+					killedName = killed.getName();
+					if(killer.getUniqueId() == killed.getUniqueId()) {
+						Mineageddon.getScoreSystem().removePercentageOfScore(killed.getUniqueId().toString(), 0.1f);
+					} else {
+						Mineageddon.getScoreSystem().transferScore(killer.getUniqueId().toString(), killed.getUniqueId().toString(), 0.1F);
+					}
 				} else {
 					killedName = event.getEntity().getType().name();
 				}
-				Mineageddon.getLoggerStaticly().log(Level.INFO,player.getName() + " killed " + killedName);
+				Mineageddon.getLoggerStaticly().log(Level.INFO,killer.getName() + " killed " + killedName);
 
 			}
 			
+		} else if(event.getEntity().getType() == EntityType.PLAYER) {
+			Mineageddon.getScoreSystem().removePercentageOfScore(((Player)event.getEntity()).getUniqueId().toString(), 0.1f);			
 		}
 	}
 

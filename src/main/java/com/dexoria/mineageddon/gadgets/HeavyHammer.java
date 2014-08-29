@@ -65,7 +65,7 @@ public class HeavyHammer extends Gadget {
 		ItemMeta meta = item.getItemMeta();
 		meta.setDisplayName(ChatColor.AQUA + "Heavy Hammer");
 		List<String> lore = new ArrayList<String>();
-		lore.add(ChatColor.GREEN + "Hit entity to propel entity.");
+		lore.add(ChatColor.GREEN + "Hit player to propel player.");
 		lore.add(ChatColor.GREEN + "Hit block to create explosion.");
 		meta.setLore(lore);
 		item.setItemMeta(meta);

@@ -24,7 +24,6 @@ public class GadgetScheduler {
 
 	public class Gadget10TickSchedule implements Runnable {
 
-		@SuppressWarnings("deprecation")
 		public void run() {
 			for(Player player: Bukkit.getOnlinePlayers()) {
 				if(Mineageddon.getConfigStaticly().isAllowedWorld(player.getWorld().getName())) {

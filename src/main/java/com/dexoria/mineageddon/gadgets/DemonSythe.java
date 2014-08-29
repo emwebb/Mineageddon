@@ -5,48 +5,53 @@ import java.util.List;
 
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
+import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
+import org.bukkit.event.block.Action;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.event.entity.EntityDamageEvent.DamageCause;
+import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 
-public class PhoenixFeather extends Gadget {
+import com.dexoria.mineageddon.utils.WorldUtils;
 
-	public PhoenixFeather() {
-		super("PHOENIXFEATHER", Material.FEATHER);
-		// TODO Auto-generated constructor stub
+public class DemonSythe extends Gadget {
+
+	public DemonSythe() {
+		super("DEMONSYTHE", Material.DIAMOND_HOE);
 	}
+	
 	
 	@Override
 	public void onEntityDamageByEntityBeingDamager(EntityDamageByEntityEvent event) {
 		super.onEntityDamageByEntityBeingDamager(event);
-		if(event.getCause() == DamageCause.ENTITY_ATTACK) {
-			event.getEntity().setFireTicks(150);
+		
+		if(event.getCause() == DamageCause.ENTITY_ATTACK ) {
+			event.setDamage(0.0);
+			if(event.getEntity() instanceof LivingEntity) {
+				((LivingEntity) event.getEntity()).addPotionEffect(new PotionEffect(PotionEffectType.POISON, 100, 1));
+				
+			}
 		}
+		
 	}
 	
-	@Override
-	public void whilePlayerHoldingGadget(Player player, int periodTime) {
-		super.whilePlayerHoldingGadget(player, periodTime);
-		player.removePotionEffect(PotionEffectType.FIRE_RESISTANCE);
-		player.addPotionEffect(new PotionEffect(PotionEffectType.FIRE_RESISTANCE, 50, 10));
-	}
 	
 	@Override
 	public ItemStack createItem() {
-		ItemStack item = new ItemStack(Material.FEATHER);
+		ItemStack item = new ItemStack(Material.DIAMOND_HOE);
 		ItemMeta meta = item.getItemMeta();
-		meta.setDisplayName(ChatColor.RED + "Phoenix Feather");
+		meta.setDisplayName(ChatColor.RED + "Demon Sythe");
 		List<String> lore = new ArrayList<String>();
-		lore.add(ChatColor.GREEN + "Hit player to set on fire.");
-		lore.add(ChatColor.GREEN + "Hold for fire resistance.");
+		lore.add(ChatColor.GREEN + "Does no damage to players");
+		lore.add(ChatColor.GREEN + "but does poison them!");
 		meta.setLore(lore);
 		item.setItemMeta(meta);
 		item.setAmount(1);
 		return item;
 	}
-
+	
 }

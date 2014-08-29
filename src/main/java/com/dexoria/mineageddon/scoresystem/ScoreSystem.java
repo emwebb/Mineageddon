@@ -1,14 +1,11 @@
 package com.dexoria.mineageddon.scoresystem;
 
-import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 
 import org.bukkit.Bukkit;
 
 import com.dexoria.mineageddon.Mineageddon;
-import com.dexoria.mineageddon.mysql.MySQL;
 
 public class ScoreSystem {
 	public void onEnable() {
@@ -18,12 +15,7 @@ public class ScoreSystem {
 	}
 	
 	public void onDisable() {
-		try {
-			Mineageddon.getMySQL().closeConnection();
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		
 	}
 	
 	public boolean playerExists(String playerUUID) {
@@ -78,6 +70,16 @@ public class ScoreSystem {
 		});
 	}
 	
+	public void removePercentageOfScore(final String playerUID, final float decimalPercentage) {
+		Bukkit.getScheduler().runTaskAsynchronously(Mineageddon.getInstance(), new Runnable(){
+			@Override
+			public void run() {
+				int loosingPlayerScore = getPlayerScore(playerUID);
+				int loss = (int) (loosingPlayerScore * decimalPercentage);
+				setPlayerScore(playerUID, loosingPlayerScore - loss);
+			}
+		});
+	}
 	public int getPlayerScore(String playerUUID) {
 		try {
 			ResultSet res = Mineageddon.getMySQL().querySQL("SELECT * FROM playerScore WHERE playerUUID = '" + playerUUID + "';");

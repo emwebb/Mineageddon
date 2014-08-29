@@ -29,7 +29,7 @@ public class WitherOrb extends Gadget{
 				((LivingEntity) entity).damage(1.0, player);
 			}
 		}
-		player.addPotionEffect(new PotionEffect(PotionEffectType.POISON, 20, 1),true);
+		player.addPotionEffect(new PotionEffect(PotionEffectType.POISON, 20, 0),true);
 			
 	}
 	
@@ -39,7 +39,7 @@ public class WitherOrb extends Gadget{
 		ItemMeta meta = item.getItemMeta();
 		meta.setDisplayName(ChatColor.BLACK + "Wither Orb");
 		List<String> lore = new ArrayList<String>();
-		lore.add(ChatColor.GREEN + "While holding this all entities");
+		lore.add(ChatColor.GREEN + "While holding this all players");
 		lore.add(ChatColor.GREEN + "with in 2 blocks of you will wither");
 		lore.add(ChatColor.GREEN + "but also gives you poison!");
 		meta.setLore(lore);

@@ -1,5 +1,7 @@
 package com.dexoria.mineageddon.command;
 
+import java.util.Map.Entry;
+
 import org.bukkit.Bukkit;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -28,12 +30,41 @@ public class CommandHandler implements CommandExecutor {
 			case "score" :
 				score(sender, cmd, label, args);
 				return true;
+			case "list" :
+				list(sender, cmd, label, args);
+				return true;
+			case "join" :
+				join(sender, cmd, label, args);
+				return true;
+				
 			}
 			return true;
 		}
 		return false;
 	}
 	
+	private void join(CommandSender sender, Command cmd, String label,
+			String[] args) {
+		if(sender instanceof Player) {
+			Mineageddon.getGameManager().setupPlayer((Player) sender);
+		} else {
+			sender.sendMessage("This can only be exacuted by players!");
+		}
+		
+	}
+
+	private void list(CommandSender sender, Command cmd, String label,
+			String[] args) {
+		sender.sendMessage("Gadget List:");
+		
+			for(String s : Gadget.getAllGadget().keySet()) {
+			sender.sendMessage(s);
+		}
+	}
+	
+	
+	
+
 	private void score(CommandSender sender, Command cmd, String label,
 			String[] args) {
 		if(sender instanceof Player) {

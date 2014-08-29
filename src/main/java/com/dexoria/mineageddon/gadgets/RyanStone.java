@@ -22,9 +22,10 @@ public class RyanStone extends Gadget {
 	
 	@Override
 	public void onEntityDamageByEntityBeingDamager(EntityDamageByEntityEvent event) {
+		super.onEntityDamageByEntityBeingDamager(event);
 		if(event.getCause() == DamageCause.ENTITY_ATTACK) {
 			if(event.getEntity() instanceof LivingEntity) {
-				((LivingEntity)event.getEntity()).addPotionEffect(new PotionEffect(PotionEffectType.SLOW,20,20));
+				((LivingEntity)event.getEntity()).addPotionEffect(new PotionEffect(PotionEffectType.SLOW,60,20));
 			}
 			
 		}
@@ -36,8 +37,9 @@ public class RyanStone extends Gadget {
 		ItemMeta meta = item.getItemMeta();
 		meta.setDisplayName(ChatColor.DARK_PURPLE + "Ryan Stone");
 		List<String> lore = new ArrayList<String>();
-		lore.add(ChatColor.GREEN + "Hit an entity with this stone to");
-		lore.add(ChatColor.GREEN + "hard code its position!");
+		lore.add(ChatColor.GREEN + "Hit an player with this stone to");
+		lore.add(ChatColor.GREEN + "hard code its position! (Make the");
+		lore.add(ChatColor.GREEN + "player unable to move for 3 seconds)");
 		meta.setLore(lore);
 		item.setItemMeta(meta);
 		item.setAmount(1);
