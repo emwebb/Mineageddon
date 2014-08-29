@@ -13,35 +13,33 @@ import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 
-public class PhoenixFeather extends Gadget {
+public class DemonicWardStone extends Gadget {
 
-	public PhoenixFeather() {
-		super("PHOENIXFEATHER", Material.FEATHER);
+	public DemonicWardStone() {
+		super("DEMONICWARDSTONE", Material.GOLD_INGOT);
 		// TODO Auto-generated constructor stub
 	}
 	
-	@Override
-	public void onEntityDamageByEntityBeingDamager(EntityDamageByEntityEvent event) {
-		super.onEntityDamageByEntityBeingDamager(event);
-		if(event.getCause() == DamageCause.ENTITY_ATTACK) {
-			event.getEntity().setFireTicks(150);
-		}
-	}
+
 	
 	@Override
 	public void whilePlayerHoldingGadget(Player player, int periodTime) {
 		super.whilePlayerHoldingGadget(player, periodTime);
-		player.addPotionEffect(new PotionEffect(PotionEffectType.FIRE_RESISTANCE, 20, 10),true);
+		player.addPotionEffect(new PotionEffect(PotionEffectType.POISON, 20, 3),true);
+		player.addPotionEffect(new PotionEffect(PotionEffectType.SPEED, 20, 3),true);
+		player.addPotionEffect(new PotionEffect(PotionEffectType.DAMAGE_RESISTANCE, 20, 4),true);
+		player.addPotionEffect(new PotionEffect(PotionEffectType.INCREASE_DAMAGE, 20, 3),true);
+		player.addPotionEffect(new PotionEffect(PotionEffectType.JUMP, 20, 3),true);
 	}
 	
 	@Override
 	public ItemStack createItem() {
-		ItemStack item = new ItemStack(Material.FEATHER);
+		ItemStack item = new ItemStack(Material.GOLD_INGOT);
 		ItemMeta meta = item.getItemMeta();
-		meta.setDisplayName(ChatColor.RED + "Phoenix Feather");
+		meta.setDisplayName(ChatColor.RED + "Demonic Ward Stone");
 		List<String> lore = new ArrayList<String>();
-		lore.add(ChatColor.GREEN + "Hit player to set on fire.");
-		lore.add(ChatColor.GREEN + "Hold for fire resistance.");
+		lore.add(ChatColor.GREEN + "When holding this stone you turn into a");
+		lore.add(ChatColor.GREEN + "demonic creature.");
 		meta.setLore(lore);
 		item.setItemMeta(meta);
 		item.setAmount(1);

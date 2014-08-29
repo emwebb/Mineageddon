@@ -37,9 +37,9 @@ public class PandorasBox extends Gadget {
 	}
 	
 	private void pandora(Player user) {
-		for(Entity others : user.getNearbyEntities(2, 2, 2)) {
+		for(Entity others : user.getNearbyEntities(4, 4, 4)) {
 			if(others instanceof LivingEntity) {
-				((LivingEntity) others).damage(12.0, user);
+				((LivingEntity) others).damage(16.0, user);
 			}
 		}
 		
