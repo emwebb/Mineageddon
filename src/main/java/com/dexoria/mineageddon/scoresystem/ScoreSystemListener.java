@@ -36,9 +36,9 @@ public class ScoreSystemListener implements Listener{
 					Player killed = ((Player) event.getEntity());
 					killedName = killed.getName();
 					if(killer.getUniqueId() == killed.getUniqueId()) {
-						Mineageddon.getScoreSystem().removePercentageOfScore(killed.getUniqueId().toString(), 0.1f);
+						killedByNothing(killed);
 					} else {
-						Mineageddon.getScoreSystem().transferScore(killer.getUniqueId().toString(), killed.getUniqueId().toString(), 0.1F);
+						killedByPlayer(killer,killed);
 					}
 				} else {
 					killedName = event.getEntity().getType().name();
@@ -48,8 +48,18 @@ public class ScoreSystemListener implements Listener{
 			}
 			
 		} else if(event.getEntity().getType() == EntityType.PLAYER) {
-			Mineageddon.getScoreSystem().removePercentageOfScore(((Player)event.getEntity()).getUniqueId().toString(), 0.1f);			
+			killedByNothing((Player) event.getEntity());
 		}
+	}
+	
+	public void killedByNothing(Player player) {
+		Mineageddon.getScoreSystem().removePercentageOfScore(player.getUniqueId().toString(), 0.01f);			
+		
+	}
+	
+	public void killedByPlayer(Player killer , Player killed) {
+		Mineageddon.getScoreSystem().transferScore(killer.getUniqueId().toString(), killed.getUniqueId().toString(), 0.01F);
+		
 	}
 
 	@EventHandler(priority = EventPriority.MONITOR)

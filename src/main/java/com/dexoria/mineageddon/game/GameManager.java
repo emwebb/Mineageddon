@@ -1,4 +1,4 @@
-package com.dexoria.mineageddon;
+package com.dexoria.mineageddon.game;
 
 import java.util.Random;
 
@@ -7,11 +7,13 @@ import org.bukkit.GameMode;
 import org.bukkit.Location;
 import org.bukkit.block.Block;
 import org.bukkit.entity.Player;
+import org.bukkit.event.HandlerList;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 import org.bukkit.util.Vector;
 
+import com.dexoria.mineageddon.Mineageddon;
 import com.dexoria.mineageddon.gadgets.Gadget;
 
 public class GameManager {
@@ -22,8 +24,20 @@ public class GameManager {
 	
 	private Random rand;
 	
+	private GameManagerListener gml;
+	
 	public GameManager() {
 		rand = new Random();
+	}
+	
+	public void onEnable() {
+		gml = new GameManagerListener();
+		Bukkit.getPluginManager().registerEvents(gml, Mineageddon.getInstance());
+	}
+	
+	public void onDisable() {
+		HandlerList.unregisterAll(gml);
+		gml = null;
 	}
 	
 	public void setupPlayer(Player player) {
@@ -39,8 +53,11 @@ public class GameManager {
 		player.setHealth(20.0);
 		player.setFoodLevel(20);
 		player.setSaturation(20);
-		player.addPotionEffect(new PotionEffect(PotionEffectType.DAMAGE_RESISTANCE, 200,50),true);
-	
+		for (PotionEffect effect : player.getActivePotionEffects())
+			player.removePotionEffect(effect.getType());
+		player.addPotionEffect(new PotionEffect(PotionEffectType.DAMAGE_RESISTANCE, 100,50),true);
+		player.addPotionEffect(new PotionEffect(PotionEffectType.BLINDNESS, 100,50),true);
+		
 	}
 	
 	public void equipPlayer(Player player) {

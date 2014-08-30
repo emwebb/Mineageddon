@@ -9,6 +9,7 @@ import org.bukkit.plugin.java.JavaPlugin;
 import com.dexoria.mineageddon.command.CommandHandler;
 import com.dexoria.mineageddon.configuration.Config;
 import com.dexoria.mineageddon.gadgets.Gadget;
+import com.dexoria.mineageddon.game.GameManager;
 import com.dexoria.mineageddon.mysql.MySQL;
 import com.dexoria.mineageddon.scoresystem.ScoreSystem;
 import com.dexoria.mineageddon.scoresystem.ScoreSystemListener;
@@ -28,6 +29,7 @@ public class Mineageddon extends JavaPlugin{
 		config = new Config();
 		config.onEnable();
 		gm = new GameManager();
+		gm.onEnable();
 		sql = new MySQL(Mineageddon.getInstance(),
 				Mineageddon.getConfigStaticly().getDBHostName(),
 				Mineageddon.getConfigStaticly().getDBPort(),
@@ -54,6 +56,7 @@ public class Mineageddon extends JavaPlugin{
 			// Can't allow a crash here so no print stack trace.
 			
 		}
+		gm.onDisable();
 		config.onDisable();
 		gm = null;
 		sql = null;
