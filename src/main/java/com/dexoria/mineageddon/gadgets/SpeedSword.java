@@ -33,7 +33,6 @@ public class SpeedSword extends Gadget {
 	public void onEntityDamageByEntityBeingDamager(EntityDamageByEntityEvent event) {
 		super.onEntityDamageByEntityBeingDamager(event);
 		if(event.getCause() == DamageCause.ENTITY_ATTACK) {
-			event.setDamage(4.0);
 			
 		}
 	}

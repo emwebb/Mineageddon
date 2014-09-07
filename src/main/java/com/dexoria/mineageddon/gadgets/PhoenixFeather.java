@@ -24,7 +24,7 @@ public class PhoenixFeather extends Gadget {
 	public void onEntityDamageByEntityBeingDamager(EntityDamageByEntityEvent event) {
 		super.onEntityDamageByEntityBeingDamager(event);
 		if(event.getCause() == DamageCause.ENTITY_ATTACK) {
-			event.getEntity().setFireTicks(150);
+			event.getEntity().setFireTicks(160);
 		}
 	}
 	

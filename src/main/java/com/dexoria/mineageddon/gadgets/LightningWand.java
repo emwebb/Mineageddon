@@ -35,12 +35,14 @@ public class LightningWand extends Gadget {
 				
 				for(Entity e : entities) {
 					if(e instanceof LivingEntity ) {
-						((LivingEntity) e).damage(0.5, event.getPlayer());
-						e.setFireTicks(20);
+						((LivingEntity) e).damage(1.3, event.getPlayer());
+						e.setFireTicks(80);
 					}
 				}
 				
 			}
+				event.getPlayer().setFoodLevel(event.getPlayer().getFoodLevel() - 1);
+			
 		}
 	}
 	

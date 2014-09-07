@@ -26,7 +26,7 @@ public class WitherOrb extends Gadget{
 			if(entity instanceof LivingEntity ) {
 				((LivingEntity) entity).addPotionEffect(new PotionEffect(PotionEffectType.WITHER, 9, 1));
 				
-				((LivingEntity) entity).damage(1.0, player);
+				((LivingEntity) entity).damage(1.3, player);
 			}
 		}
 		player.addPotionEffect(new PotionEffect(PotionEffectType.POISON, 20, 9),true);

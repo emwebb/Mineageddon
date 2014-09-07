@@ -31,7 +31,7 @@ public class HeavyHammer extends Gadget {
 		super.onPlayerInteractEvent(event);
 		if(event.getAction() == Action.LEFT_CLICK_BLOCK) {
 			WorldUtils.createExplosion(event.getPlayer().getWorld(), event.getPlayer(), event.getClickedBlock().getLocation(), 5, false, true);
-			event.getPlayer().damage(10.0, event.getPlayer());
+			event.getPlayer().damage(11.5, event.getPlayer());
 		}
 	}
 	

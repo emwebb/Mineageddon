@@ -141,5 +141,9 @@ public abstract class Gadget {
 	}
 	
 	public abstract ItemStack createItem();
+
+	public String getName() {
+		return name;
+	}
 	
 }

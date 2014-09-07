@@ -13,6 +13,7 @@ import com.dexoria.mineageddon.game.GameManager;
 import com.dexoria.mineageddon.mysql.MySQL;
 import com.dexoria.mineageddon.scoresystem.ScoreSystem;
 import com.dexoria.mineageddon.scoresystem.ScoreSystemListener;
+import com.dexoria.mineageddon.statistics.StatisticsSystem;
 
 
 public class Mineageddon extends JavaPlugin{
@@ -23,6 +24,7 @@ public class Mineageddon extends JavaPlugin{
 	private Config config;
 	private MySQL sql;
 	private GameManager gm;
+	private StatisticsSystem stats;
 	@Override
 	public void onEnable() {
 		instance = this;
@@ -42,10 +44,13 @@ public class Mineageddon extends JavaPlugin{
 		getServer().getPluginManager().registerEvents(ssl, this);
 		Gadget.onEnable();
 		this.getCommand("mineageddon").setExecutor(new CommandHandler());
+		stats = new StatisticsSystem();
+		stats.onEnable();
 	}
 	
 	@Override
 	public void onDisable() {
+		stats.onDisable();
 		Gadget.onDisable();
 		HandlerList.unregisterAll(ssl);
 
@@ -62,6 +67,7 @@ public class Mineageddon extends JavaPlugin{
 		sql = null;
 		ss = null;
 		config = null;
+		stats = null;
 		instance = null;
 	}
 	
@@ -91,5 +97,9 @@ public class Mineageddon extends JavaPlugin{
 	
 	public static GameManager getGameManager() {
 		return instance.gm;
+	}
+	
+	public static StatisticsSystem getStatisticsSystem() {
+		return instance.stats;
 	}
 }

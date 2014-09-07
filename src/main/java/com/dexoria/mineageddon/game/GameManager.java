@@ -5,6 +5,7 @@ import java.util.Random;
 import org.bukkit.Bukkit;
 import org.bukkit.GameMode;
 import org.bukkit.Location;
+import org.bukkit.Material;
 import org.bukkit.block.Block;
 import org.bukkit.entity.Player;
 import org.bukkit.event.HandlerList;
@@ -25,19 +26,25 @@ public class GameManager {
 	private Random rand;
 	
 	private GameManagerListener gml;
+	private BorderManager borderManager;
 	
 	public GameManager() {
 		rand = new Random();
+		
 	}
 	
 	public void onEnable() {
 		gml = new GameManagerListener();
 		Bukkit.getPluginManager().registerEvents(gml, Mineageddon.getInstance());
+		borderManager = new BorderManager();
+		borderManager.onEnable();
 	}
-	
+	 
 	public void onDisable() {
 		HandlerList.unregisterAll(gml);
 		gml = null;
+		borderManager.onDisbale();
+		borderManager = null;
 	}
 	
 	public void setupPlayer(Player player) {
@@ -49,13 +56,15 @@ public class GameManager {
 		
 		equipPlayer(player);
 		
+		equipPlayerArmour(player);
+		
 		player.setGameMode(GameMode.SURVIVAL);
 		player.setHealth(20.0);
 		player.setFoodLevel(20);
 		player.setSaturation(20);
 		for (PotionEffect effect : player.getActivePotionEffects())
 			player.removePotionEffect(effect.getType());
-		player.addPotionEffect(new PotionEffect(PotionEffectType.DAMAGE_RESISTANCE, 100,50),true);
+		player.addPotionEffect(new PotionEffect(PotionEffectType.DAMAGE_RESISTANCE, 150,50),true);
 		player.addPotionEffect(new PotionEffect(PotionEffectType.BLINDNESS, 100,50),true);
 		
 	}
@@ -67,6 +76,13 @@ public class GameManager {
 		}
 		
 		
+	}
+	
+	public void equipPlayerArmour(Player player) {
+		player.getInventory().setBoots(new ItemStack(Material.LEATHER_BOOTS));
+		player.getInventory().setLeggings(new ItemStack(Material.LEATHER_LEGGINGS));
+		player.getInventory().setChestplate(new ItemStack(Material.LEATHER_CHESTPLATE));
+		player.getInventory().setHelmet(new ItemStack(Material.GLASS));
 	}
 	
 	public void addRandomGadgetToPlayer(Player player) {
