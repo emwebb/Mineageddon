@@ -11,15 +11,15 @@ import com.dexoria.mineageddon.gadgets.Gadget;
 import com.dexoria.mineageddon.gadgets.GadgetScheduler.Gadget10TickSchedule;
 
 public class BorderManager {
-	private int scheduleID;
+	private int warningScheduleID;
 	public void onEnable() {
 		BukkitScheduler scheduler = Bukkit.getServer().getScheduler();
-		scheduleID = scheduler.scheduleSyncRepeatingTask(Mineageddon.getInstance(), new BorderWarningTick(), 0, 10);
-	}
+		warningScheduleID = scheduler.scheduleSyncRepeatingTask(Mineageddon.getInstance(), new BorderWarningTick(), 0, 10);
+			}
 
 	public void onDisbale() {
 		BukkitScheduler scheduler = Bukkit.getServer().getScheduler();
-		scheduler.cancelTask(scheduleID);
+		scheduler.cancelTask(warningScheduleID);
 	}
 
 	public static final double WARNING_DISTANCE_SQUARED = (51*51)+(51*51);
@@ -37,7 +37,7 @@ public class BorderManager {
 						player.sendMessage(ChatColor.RED + "YOU ARE OUTSIDE OF THE WORLD BORDER. PLEASE HEAD BACK TOWARDS THE CENTER OR YOU WILL BE EXTERMINATED!");
 					}
 					if(squaredDistanceFromCenter > DIE_DISTANCE_SQUARED) {
-						player.setHealth(0.0);
+						player.damage(10.0);
 					}
 
 				}
@@ -46,4 +46,5 @@ public class BorderManager {
 		}
 
 	}
+
 }
