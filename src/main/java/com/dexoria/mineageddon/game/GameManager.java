@@ -112,9 +112,13 @@ public class GameManager {
 		while(!success) {
 			String worldName =	Mineageddon.getConfigStaticly().getAllowedWorlds().get(rand.nextInt(Mineageddon.getConfigStaticly().getAllowedWorlds().size()));
 			Block spawnBlock = Bukkit.getWorld(worldName).getHighestBlockAt(rand.nextInt(WORLD_SIZE) - (WORLD_SIZE / 2), rand.nextInt(WORLD_SIZE) - (WORLD_SIZE / 2));
+			if(spawnBlock.getType() != Material.WATER &&
+					spawnBlock.getType() != Material.LAVA &&
+					spawnBlock.getType() != Material.CACTUS) {
+				loc = spawnBlock.getLocation().add(new Vector(0,1,0));
+				success = true;
+			}
 			
-			loc = spawnBlock.getLocation().add(new Vector(0,1,0));
-			success = true;
 		}
 		
 		
