@@ -13,6 +13,7 @@ import com.dexoria.mineageddon.game.GameManager;
 import com.dexoria.mineageddon.mysql.MySQL;
 import com.dexoria.mineageddon.scoresystem.ScoreSystem;
 import com.dexoria.mineageddon.scoresystem.ScoreSystemListener;
+import com.dexoria.mineageddon.shopsystem.ShopSystem;
 import com.dexoria.mineageddon.statistics.StatisticsSystem;
 
 
@@ -25,6 +26,7 @@ public class Mineageddon extends JavaPlugin{
 	private MySQL sql;
 	private GameManager gm;
 	private StatisticsSystem stats;
+	private ShopSystem shopSystem;
 	@Override
 	public void onEnable() {
 		instance = this;
@@ -46,6 +48,7 @@ public class Mineageddon extends JavaPlugin{
 		this.getCommand("mineageddon").setExecutor(new CommandHandler());
 		stats = new StatisticsSystem();
 		stats.onEnable();
+		shopSystem.onEnable();
 	}
 	
 	@Override
@@ -63,12 +66,14 @@ public class Mineageddon extends JavaPlugin{
 		}
 		gm.onDisable();
 		config.onDisable();
+		shopSystem.onDisable();
 		gm = null;
 		sql = null;
 		ss = null;
 		config = null;
 		stats = null;
 		instance = null;
+		shopSystem = null;
 	}
 	
 	public Config getConfigInstannce() {
@@ -101,5 +106,13 @@ public class Mineageddon extends JavaPlugin{
 	
 	public static StatisticsSystem getStatisticsSystem() {
 		return instance.stats;
+	}
+
+	public ShopSystem getShopSystem() {
+		return shopSystem;
+	}
+
+	public void setShopSystem(ShopSystem shopSystem) {
+		this.shopSystem = shopSystem;
 	}
 }
