@@ -11,6 +11,7 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityDamageEvent;
 import org.bukkit.event.entity.EntityDeathEvent;
 import org.bukkit.event.player.PlayerDropItemEvent;
+import org.bukkit.event.player.PlayerRespawnEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.potion.Potion;
 import org.bukkit.potion.PotionType;
@@ -30,6 +31,8 @@ public class GameManagerListener implements Listener {
 			Potion potion = new Potion(PotionType.INSTANT_HEAL,1);
 			event.getDrops().add(potion.toItemStack(1));
 			event.getDrops().add(new ItemStack(Material.COOKIE,3));
+			
+			Mineageddon.getGameManager().addPlayerToRespawnList((Player)event.getEntity());
 		}
 	}
 	
@@ -39,6 +42,16 @@ public class GameManagerListener implements Listener {
 			return;
 		
 		event.setCancelled(true);
+	
+	}
+	
+	@EventHandler
+	public void onPlayerRespawn(PlayerRespawnEvent event) {
+		
+		if(Mineageddon.getGameManager().playerOnRespawnList(event.getPlayer())) {
+			Mineageddon.getGameManager().removePlayerFromRespawnList(event.getPlayer());
+			Mineageddon.getGameManager().setupPlayer(event.getPlayer());
+		}
 	
 	}
 	

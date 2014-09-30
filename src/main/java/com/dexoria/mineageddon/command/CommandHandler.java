@@ -1,7 +1,5 @@
 package com.dexoria.mineageddon.command;
 
-import java.util.Map.Entry;
-
 import org.bukkit.Bukkit;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -85,6 +83,7 @@ public class CommandHandler implements CommandExecutor {
 			
 			return;
 		}
+		@SuppressWarnings("deprecation")
 		Player player = Bukkit.getPlayer(args[1]);
 		if(!player.isOnline()) {
 			sender.sendMessage("Player " + args[1] + " is not online");

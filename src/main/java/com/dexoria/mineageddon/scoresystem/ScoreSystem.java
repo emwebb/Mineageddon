@@ -4,10 +4,12 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import org.bukkit.Bukkit;
+import org.bukkit.entity.Player;
 
 import com.dexoria.mineageddon.Mineageddon;
+import com.dexoria.mineageddon.core.SubSystem;
 
-public class ScoreSystem {
+public class ScoreSystem implements SubSystem{
 	public void onEnable() {
 		
 	
@@ -80,6 +82,34 @@ public class ScoreSystem {
 			}
 		});
 	}
+	
+	public void removePercentageOfPointsAndTransferToPlayersOnTheServer(final String playerUID, final float decimalPercentage) {
+		Bukkit.getScheduler().runTaskAsynchronously(Mineageddon.getInstance(), new Runnable(){
+			@Override
+			public void run() {
+				int loosingPlayerScore = getPlayerScore(playerUID);
+				int loss = (int) (loosingPlayerScore * decimalPercentage);
+				setPlayerScore(playerUID, loosingPlayerScore - loss);
+				int numOfPlayers = 0;
+				for(Player player : Bukkit.getOnlinePlayers()) {
+					if(Mineageddon.getConfigStaticly().isAllowedWorld(player.getWorld().getName()) && player.getUniqueId().toString() != playerUID){
+						numOfPlayers ++;
+					}
+				}
+				
+				int gain = loss / numOfPlayers;
+				for(Player player : Bukkit.getOnlinePlayers()) {
+					if(Mineageddon.getConfigStaticly().isAllowedWorld(player.getWorld().getName()) && player.getUniqueId().toString() != playerUID){
+						int playerSocre = getPlayerScore(player.getUniqueId().toString());
+						int newScore =  playerSocre + gain;
+						setPlayerScore(player.getUniqueId().toString(),newScore);
+					}
+				}
+				
+			}
+		});
+	}
+	
 	public int getPlayerScore(String playerUUID) {
 		try {
 			ResultSet res = Mineageddon.getMySQL().querySQL("SELECT * FROM playerScore WHERE playerUUID = '" + playerUUID + "';");
@@ -102,5 +132,7 @@ public class ScoreSystem {
 		}
 		
 	}
+	
+	
 	
 }

@@ -41,7 +41,11 @@ public class LightningWand extends Gadget {
 				}
 				
 			}
+			if(event.getPlayer().getFoodLevel() > 0 ) {
 				event.getPlayer().setFoodLevel(event.getPlayer().getFoodLevel() - 1);
+			} else {
+				event.getPlayer().damage(0.5);
+			}
 			
 		}
 	}

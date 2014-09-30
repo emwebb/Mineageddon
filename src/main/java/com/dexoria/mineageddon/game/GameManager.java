@@ -1,5 +1,7 @@
 package com.dexoria.mineageddon.game;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 
 import org.bukkit.Bukkit;
@@ -15,9 +17,10 @@ import org.bukkit.potion.PotionEffectType;
 import org.bukkit.util.Vector;
 
 import com.dexoria.mineageddon.Mineageddon;
+import com.dexoria.mineageddon.core.SubSystem;
 import com.dexoria.mineageddon.gadgets.Gadget;
 
-public class GameManager {
+public class GameManager implements SubSystem{
 	
 	public static final int WORLD_SIZE = 100;
 	
@@ -28,6 +31,7 @@ public class GameManager {
 	private GameManagerListener gml;
 	private BorderManager borderManager;
 	
+	private List<String> playersToRespawn;
 	public GameManager() {
 		rand = new Random();
 		
@@ -38,13 +42,31 @@ public class GameManager {
 		Bukkit.getPluginManager().registerEvents(gml, Mineageddon.getInstance());
 		borderManager = new BorderManager();
 		borderManager.onEnable();
+
+		playersToRespawn = new ArrayList<String>();
 	}
 	 
 	public void onDisable() {
 		HandlerList.unregisterAll(gml);
 		gml = null;
-		borderManager.onDisbale();
+		borderManager.onDisable();
 		borderManager = null;
+
+		playersToRespawn = null;
+	}
+	
+	public boolean playerOnRespawnList(Player player) {
+		return playersToRespawn.contains(player.getUniqueId().toString());
+	}
+	
+	public void addPlayerToRespawnList(Player player) {
+		playersToRespawn.add(player.getUniqueId().toString());
+	}
+	
+	public void removePlayerFromRespawnList(Player player) {
+		if(playerOnRespawnList(player)) {
+			playersToRespawn.remove(player.getUniqueId().toString());
+		}
 	}
 	
 	public void setupPlayer(Player player) {

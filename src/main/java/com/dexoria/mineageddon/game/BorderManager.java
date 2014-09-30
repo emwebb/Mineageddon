@@ -3,21 +3,19 @@ package com.dexoria.mineageddon.game;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
-import org.bukkit.inventory.ItemStack;
 import org.bukkit.scheduler.BukkitScheduler;
 
 import com.dexoria.mineageddon.Mineageddon;
-import com.dexoria.mineageddon.gadgets.Gadget;
-import com.dexoria.mineageddon.gadgets.GadgetScheduler.Gadget10TickSchedule;
+import com.dexoria.mineageddon.core.SubSystem;
 
-public class BorderManager {
+public class BorderManager implements SubSystem{
 	private int warningScheduleID;
 	public void onEnable() {
 		BukkitScheduler scheduler = Bukkit.getServer().getScheduler();
 		warningScheduleID = scheduler.scheduleSyncRepeatingTask(Mineageddon.getInstance(), new BorderWarningTick(), 0, 10);
 			}
 
-	public void onDisbale() {
+	public void onDisable() {
 		BukkitScheduler scheduler = Bukkit.getServer().getScheduler();
 		scheduler.cancelTask(warningScheduleID);
 	}

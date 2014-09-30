@@ -7,9 +7,10 @@ import org.bukkit.Bukkit;
 import org.bukkit.event.HandlerList;
 
 import com.dexoria.mineageddon.Mineageddon;
+import com.dexoria.mineageddon.core.SubSystem;
 import com.dexoria.mineageddon.gadgets.Gadget;
 
-public class StatisticsSystem {
+public class StatisticsSystem implements SubSystem{
 	
 	private StatisticsSystemListener ssl;
 	

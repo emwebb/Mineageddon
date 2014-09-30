@@ -132,6 +132,7 @@ public abstract class Gadget {
 		
 	}
 	
+	@SuppressWarnings("unused")
 	public void whilePlayerHoldingGadget(Player player, int periodTime) {
 		if(Debug.ON && Debug.SPAM_ALLOWED) {
 			Mineageddon.getLoggerStaticly().log(Level.INFO,"whilePlayerHoldingGadget invoked by '" + player.getName() + "'");
@@ -144,6 +145,10 @@ public abstract class Gadget {
 
 	public String getName() {
 		return name;
+	}
+
+	public String getVanillaID() {
+		return vanillaID;
 	}
 	
 }
