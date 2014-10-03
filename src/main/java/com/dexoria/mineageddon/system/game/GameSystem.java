@@ -17,8 +17,8 @@ import org.bukkit.potion.PotionEffectType;
 import org.bukkit.util.Vector;
 
 import com.dexoria.mineageddon.Mineageddon;
-import com.dexoria.mineageddon.core.SubSystem;
 import com.dexoria.mineageddon.gadgets.Gadget;
+import com.dexoria.mineageddon.system.SubSystem;
 
 public class GameSystem implements SubSystem{
 	
