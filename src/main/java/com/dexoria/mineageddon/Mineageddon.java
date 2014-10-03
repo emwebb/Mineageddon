@@ -20,54 +20,56 @@ import com.dexoria.mineageddon.statistics.StatisticsSystem;
 public class Mineageddon extends JavaPlugin{
 	private static Mineageddon instance;
 	
-	private ScoreSystem ss;
 	private Config config;
 	private MySQL sql;
-	private GameSystem gs;
-	private StatisticsSystem stats;
+	
+	private ScoreSystem scoreSystem;
+	private GameSystem gameSystem;
+	private StatisticsSystem statisticsSystem;
 	private ShopSystem shopSystem;
+	
 	@Override
 	public void onEnable() {
 		instance = this;
 		config = new Config();
 		config.onEnable();
-		gs = new GameSystem();
-		gs.onEnable();
+		gameSystem = new GameSystem();
+		gameSystem.onEnable();
 		sql = new MySQL(Mineageddon.getInstance(),
 				Mineageddon.getConfigStaticly().getDBHostName(),
 				Mineageddon.getConfigStaticly().getDBPort(),
 				Mineageddon.getConfigStaticly().getDBDatabase(),
 				Mineageddon.getConfigStaticly().getDBUsername(),
 				Mineageddon.getConfigStaticly().getDBPassword());
-		ss = new ScoreSystem();
-		ss.onEnable();
+		scoreSystem = new ScoreSystem();
+		scoreSystem.onEnable();
 		Gadget.onEnable();
 		this.getCommand("mineageddon").setExecutor(new CommandHandler());
-		stats = new StatisticsSystem();
-		stats.onEnable();
+		statisticsSystem = new StatisticsSystem();
+		statisticsSystem.onEnable();
 		shopSystem.onEnable();
 	}
 	
 	@Override
 	public void onDisable() {
-		stats.onDisable();
+		statisticsSystem.onDisable();
 		Gadget.onDisable();
 
-		ss.onDisable();
+		scoreSystem.onDisable();
 		try {
 			sql.closeConnection();
 		} catch (SQLException e) {
 			// Can't allow a crash here so no print stack trace.
 			
 		}
-		gs.onDisable();
+		gameSystem.onDisable();
 		config.onDisable();
 		shopSystem.onDisable();
-		gs = null;
+		gameSystem = null;
 		sql = null;
-		ss = null;
+		scoreSystem = null;
 		config = null;
-		stats = null;
+		statisticsSystem = null;
 		instance = null;
 		shopSystem = null;
 	}
@@ -89,7 +91,7 @@ public class Mineageddon extends JavaPlugin{
 	}
 	
 	public static ScoreSystem getScoreSystem() {
-		return instance.ss;
+		return instance.scoreSystem;
 	}
 	
 	public static MySQL getMySQL() {
@@ -97,11 +99,11 @@ public class Mineageddon extends JavaPlugin{
 	}
 	
 	public static GameSystem getGameSystem() {
-		return instance.gs;
+		return instance.gameSystem;
 	}
 	
 	public static StatisticsSystem getStatisticsSystem() {
-		return instance.stats;
+		return instance.statisticsSystem;
 	}
 
 	public ShopSystem getShopSystem() {
