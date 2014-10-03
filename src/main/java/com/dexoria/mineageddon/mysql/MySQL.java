@@ -8,7 +8,6 @@ import java.sql.Statement;
 
 import org.bukkit.plugin.Plugin;
 
-
 public class MySQL {
 
 	protected Connection connection;
@@ -23,7 +22,6 @@ public class MySQL {
 	private final String password;
 	private final String port;
 	private final String hostname;
-
 
 	/**
 	 * Creates a new MySQL instance
@@ -54,7 +52,7 @@ public class MySQL {
 	}
 
 	public Connection openConnection() throws SQLException,
-	ClassNotFoundException {
+			ClassNotFoundException {
 		if (checkConnection()) {
 			return connection;
 		}
@@ -82,7 +80,7 @@ public class MySQL {
 	}
 
 	public ResultSet querySQL(String query) throws SQLException,
-	ClassNotFoundException {
+			ClassNotFoundException {
 		if (!checkConnection()) {
 			openConnection();
 		}
@@ -93,8 +91,9 @@ public class MySQL {
 
 		return result;
 	}
+
 	public int updateSQL(String query) throws SQLException,
-	ClassNotFoundException {
+			ClassNotFoundException {
 		if (!checkConnection()) {
 			openConnection();
 		}

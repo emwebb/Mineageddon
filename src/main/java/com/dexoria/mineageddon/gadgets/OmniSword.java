@@ -16,13 +16,15 @@ public class OmniSword extends Gadget {
 	public OmniSword() {
 		super("OMNISWORD", Material.WOOD_SWORD);
 	}
-	
+
 	@Override
 	public void whilePlayerHoldingGadget(Player player, int periodTime) {
 		super.whilePlayerHoldingGadget(player, periodTime);
-		player.addPotionEffect(new PotionEffect(PotionEffectType.DAMAGE_RESISTANCE, 15, 1),true);
-		player.addPotionEffect(new PotionEffect(PotionEffectType.JUMP, 15, 4),true);
-		
+		player.addPotionEffect(new PotionEffect(
+				PotionEffectType.DAMAGE_RESISTANCE, 15, 1), true);
+		player.addPotionEffect(new PotionEffect(PotionEffectType.JUMP, 15, 4),
+				true);
+
 	}
 
 	@Override
@@ -36,7 +38,7 @@ public class OmniSword extends Gadget {
 		meta.setLore(lore);
 		item.setItemMeta(meta);
 		item.setAmount(1);
-		
+
 		return item;
 	}
 

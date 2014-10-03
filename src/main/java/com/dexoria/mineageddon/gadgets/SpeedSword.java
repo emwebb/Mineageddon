@@ -18,21 +18,25 @@ public class SpeedSword extends Gadget {
 	public SpeedSword() {
 		super("SPEEDSWORD", Material.STONE_SWORD);
 	}
-	
+
 	@Override
 	public void whilePlayerHoldingGadget(Player player, int periodTime) {
 		super.whilePlayerHoldingGadget(player, periodTime);
-		player.addPotionEffect(new PotionEffect(PotionEffectType.FAST_DIGGING, 15, 2),true);
-		player.addPotionEffect(new PotionEffect(PotionEffectType.SPEED, 15, 2),true);
-		player.addPotionEffect(new PotionEffect(PotionEffectType.JUMP, 15, 2),true);
-		
+		player.addPotionEffect(new PotionEffect(PotionEffectType.FAST_DIGGING,
+				15, 2), true);
+		player.addPotionEffect(new PotionEffect(PotionEffectType.SPEED, 15, 2),
+				true);
+		player.addPotionEffect(new PotionEffect(PotionEffectType.JUMP, 15, 2),
+				true);
+
 	}
-	
+
 	@Override
-	public void onEntityDamageByEntityBeingDamager(EntityDamageByEntityEvent event) {
+	public void onEntityDamageByEntityBeingDamager(
+			EntityDamageByEntityEvent event) {
 		super.onEntityDamageByEntityBeingDamager(event);
-		if(event.getCause() == DamageCause.ENTITY_ATTACK) {
-			
+		if (event.getCause() == DamageCause.ENTITY_ATTACK) {
+
 		}
 	}
 
@@ -47,7 +51,7 @@ public class SpeedSword extends Gadget {
 		meta.setLore(lore);
 		item.setItemMeta(meta);
 		item.setAmount(1);
-		
+
 		return item;
 	}
 

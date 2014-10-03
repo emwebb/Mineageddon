@@ -19,18 +19,21 @@ public class RyanStone extends Gadget {
 		super("RYANSTONE", Material.EMERALD);
 		// TODO Auto-generated constructor stub
 	}
-	
+
 	@Override
-	public void onEntityDamageByEntityBeingDamager(EntityDamageByEntityEvent event) {
+	public void onEntityDamageByEntityBeingDamager(
+			EntityDamageByEntityEvent event) {
 		super.onEntityDamageByEntityBeingDamager(event);
-		if(event.getCause() == DamageCause.ENTITY_ATTACK) {
-			if(event.getEntity() instanceof LivingEntity) {
-				((LivingEntity)event.getEntity()).addPotionEffect(new PotionEffect(PotionEffectType.SLOW,60,20));
+		if (event.getCause() == DamageCause.ENTITY_ATTACK) {
+			if (event.getEntity() instanceof LivingEntity) {
+				((LivingEntity) event.getEntity())
+						.addPotionEffect(new PotionEffect(
+								PotionEffectType.SLOW, 60, 20));
 			}
-			
+
 		}
 	}
-	
+
 	@Override
 	public ItemStack createItem() {
 		ItemStack item = new ItemStack(Material.EMERALD);

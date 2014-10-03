@@ -18,23 +18,24 @@ public class DemonSythe extends Gadget {
 	public DemonSythe() {
 		super("DEMONSYTHE", Material.DIAMOND_HOE);
 	}
-	
-	
+
 	@Override
-	public void onEntityDamageByEntityBeingDamager(EntityDamageByEntityEvent event) {
+	public void onEntityDamageByEntityBeingDamager(
+			EntityDamageByEntityEvent event) {
 		super.onEntityDamageByEntityBeingDamager(event);
-		
-		if(event.getCause() == DamageCause.ENTITY_ATTACK ) {
+
+		if (event.getCause() == DamageCause.ENTITY_ATTACK) {
 			event.setDamage(0.0);
-			if(event.getEntity() instanceof LivingEntity) {
-				((LivingEntity) event.getEntity()).addPotionEffect(new PotionEffect(PotionEffectType.POISON, 100, 1));
-				
+			if (event.getEntity() instanceof LivingEntity) {
+				((LivingEntity) event.getEntity())
+						.addPotionEffect(new PotionEffect(
+								PotionEffectType.POISON, 100, 1));
+
 			}
 		}
-		
+
 	}
-	
-	
+
 	@Override
 	public ItemStack createItem() {
 		ItemStack item = new ItemStack(Material.DIAMOND_HOE);
@@ -48,5 +49,5 @@ public class DemonSythe extends Gadget {
 		item.setAmount(1);
 		return item;
 	}
-	
+
 }

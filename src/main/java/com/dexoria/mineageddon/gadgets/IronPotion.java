@@ -11,27 +11,29 @@ import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 
-public class IronPotion extends Gadget{
+public class IronPotion extends Gadget {
 
 	public IronPotion() {
 		super("IRONPOTION", Material.IRON_INGOT);
 	}
-	
+
 	@Override
 	public void onPlayerInteractEvent(PlayerInteractEvent event) {
 		super.onPlayerInteractEvent(event);
-		
-		event.getPlayer().addPotionEffect(new PotionEffect(PotionEffectType.DAMAGE_RESISTANCE, 600, 1),true);
-		event.getPlayer().addPotionEffect(new PotionEffect(PotionEffectType.SLOW, 600, 3),true);
-			
-		
-		if( event.getItem().getAmount() <= 1) {
+
+		event.getPlayer().addPotionEffect(
+				new PotionEffect(PotionEffectType.DAMAGE_RESISTANCE, 600, 1),
+				true);
+		event.getPlayer().addPotionEffect(
+				new PotionEffect(PotionEffectType.SLOW, 600, 3), true);
+
+		if (event.getItem().getAmount() <= 1) {
 			event.getPlayer().getInventory().removeItem(event.getItem());
 		} else {
 			event.getItem().setAmount(event.getItem().getAmount() - 1);
 		}
 	}
-	
+
 	@Override
 	public ItemStack createItem() {
 		ItemStack item = new ItemStack(Material.IRON_INGOT);

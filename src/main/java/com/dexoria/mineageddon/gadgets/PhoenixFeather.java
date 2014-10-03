@@ -19,21 +19,23 @@ public class PhoenixFeather extends Gadget {
 		super("PHOENIXFEATHER", Material.FEATHER);
 		// TODO Auto-generated constructor stub
 	}
-	
+
 	@Override
-	public void onEntityDamageByEntityBeingDamager(EntityDamageByEntityEvent event) {
+	public void onEntityDamageByEntityBeingDamager(
+			EntityDamageByEntityEvent event) {
 		super.onEntityDamageByEntityBeingDamager(event);
-		if(event.getCause() == DamageCause.ENTITY_ATTACK) {
+		if (event.getCause() == DamageCause.ENTITY_ATTACK) {
 			event.getEntity().setFireTicks(160);
 		}
 	}
-	
+
 	@Override
 	public void whilePlayerHoldingGadget(Player player, int periodTime) {
 		super.whilePlayerHoldingGadget(player, periodTime);
-		player.addPotionEffect(new PotionEffect(PotionEffectType.FIRE_RESISTANCE, 20, 10),true);
+		player.addPotionEffect(new PotionEffect(
+				PotionEffectType.FIRE_RESISTANCE, 20, 10), true);
 	}
-	
+
 	@Override
 	public ItemStack createItem() {
 		ItemStack item = new ItemStack(Material.FEATHER);

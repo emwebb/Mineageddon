@@ -17,20 +17,24 @@ public class DemonicWardStone extends Gadget {
 		super("DEMONICWARDSTONE", Material.GOLD_INGOT);
 		// TODO Auto-generated constructor stub
 	}
-	
 
-	
 	@Override
 	public void whilePlayerHoldingGadget(Player player, int periodTime) {
 		super.whilePlayerHoldingGadget(player, periodTime);
-		player.addPotionEffect(new PotionEffect(PotionEffectType.POISON, 20, 90),true);
-		player.addPotionEffect(new PotionEffect(PotionEffectType.SPEED, 20, 3),true);
-		player.addPotionEffect(new PotionEffect(PotionEffectType.DAMAGE_RESISTANCE, 20, 1),true);
-		player.addPotionEffect(new PotionEffect(PotionEffectType.INCREASE_DAMAGE, 20, 4),true);
-		player.addPotionEffect(new PotionEffect(PotionEffectType.JUMP, 20, 3),true);
-		player.addPotionEffect(new PotionEffect(PotionEffectType.SATURATION, 20, 3),true);
+		player.addPotionEffect(
+				new PotionEffect(PotionEffectType.POISON, 20, 90), true);
+		player.addPotionEffect(new PotionEffect(PotionEffectType.SPEED, 20, 3),
+				true);
+		player.addPotionEffect(new PotionEffect(
+				PotionEffectType.DAMAGE_RESISTANCE, 20, 1), true);
+		player.addPotionEffect(new PotionEffect(
+				PotionEffectType.INCREASE_DAMAGE, 20, 4), true);
+		player.addPotionEffect(new PotionEffect(PotionEffectType.JUMP, 20, 3),
+				true);
+		player.addPotionEffect(new PotionEffect(PotionEffectType.SATURATION,
+				20, 3), true);
 	}
-	
+
 	@Override
 	public ItemStack createItem() {
 		ItemStack item = new ItemStack(Material.GOLD_INGOT);

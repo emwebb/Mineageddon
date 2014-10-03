@@ -18,33 +18,32 @@ public class PandorasBox extends Gadget {
 	public PandorasBox() {
 		super("PANDORASBOX", Material.COAL);
 	}
-	
+
 	@Override
 	public void onPlayerInteractEvent(PlayerInteractEvent event) {
 		super.onPlayerInteractEvent(event);
-		if(event.getAction() != Action.PHYSICAL) {
+		if (event.getAction() != Action.PHYSICAL) {
 			pandora(event.getPlayer());
 		}
 	}
-	
+
 	private void pandora(Player user) {
-		for(Entity others : user.getNearbyEntities(4, 4, 4)) {
-			if(others instanceof LivingEntity) {
+		for (Entity others : user.getNearbyEntities(4, 4, 4)) {
+			if (others instanceof LivingEntity) {
 				((LivingEntity) others).damage(18.0, user);
 			}
 		}
-		
-		user.damage((double)Integer.MAX_VALUE); //INFINITE DAMAGE!
-			
+
+		user.damage((double) Integer.MAX_VALUE); // INFINITE DAMAGE!
+
 	}
-	
-	
-	
+
 	@Override
 	public ItemStack createItem() {
 		ItemStack item = new ItemStack(Material.COAL);
 		ItemMeta meta = item.getItemMeta();
-		meta.setDisplayName(ChatColor.RED + "" + ChatColor.BOLD + "PANDORA'S BOX");
+		meta.setDisplayName(ChatColor.RED + "" + ChatColor.BOLD
+				+ "PANDORA'S BOX");
 		List<String> lore = new ArrayList<String>();
 		lore.add(ChatColor.GREEN + "Deals 6 hearts of damage to");
 		lore.add(ChatColor.GREEN + "everyone near you and kills you.");
@@ -53,5 +52,5 @@ public class PandorasBox extends Gadget {
 		item.setAmount(1);
 		return item;
 	}
-	
+
 }

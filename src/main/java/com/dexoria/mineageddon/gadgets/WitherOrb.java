@@ -13,30 +13,33 @@ import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 
-public class WitherOrb extends Gadget{
+public class WitherOrb extends Gadget {
 
 	public WitherOrb() {
 		super("WITHERORB", Material.NETHER_STAR);
 	}
-	
+
 	@Override
 	public void whilePlayerHoldingGadget(Player player, int periodTime) {
 		super.whilePlayerHoldingGadget(player, periodTime);
-		for(Entity entity : player.getNearbyEntities(2,2,2)) {
-			if(entity instanceof LivingEntity ) {
-				((LivingEntity) entity).addPotionEffect(new PotionEffect(PotionEffectType.WITHER, 9, 1));
-				
+		for (Entity entity : player.getNearbyEntities(2, 2, 2)) {
+			if (entity instanceof LivingEntity) {
+				((LivingEntity) entity).addPotionEffect(new PotionEffect(
+						PotionEffectType.WITHER, 9, 1));
+
 				((LivingEntity) entity).damage(1.3, player);
 			}
 		}
-		player.addPotionEffect(new PotionEffect(PotionEffectType.POISON, 20, 9),true);
-/*		if(player.getHealth() > 1.0) {
+		player.addPotionEffect(
+				new PotionEffect(PotionEffectType.POISON, 20, 9), true);
+		/*
+		 * if(player.getHealth() > 1.0) {
+		 * 
+		 * player.damage(1.0); }
+		 */
 
-			player.damage(1.0);
-		}*/
-			
 	}
-	
+
 	@Override
 	public ItemStack createItem() {
 		ItemStack item = new ItemStack(Material.NETHER_STAR);
