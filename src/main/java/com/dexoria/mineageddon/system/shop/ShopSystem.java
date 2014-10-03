@@ -1,6 +1,6 @@
-package com.dexoria.mineageddon.shopsystem;
+package com.dexoria.mineageddon.system.shop;
 
-import com.dexoria.mineageddon.core.SubSystem;
+import com.dexoria.mineageddon.system.SubSystem;
 
 public class ShopSystem implements SubSystem{
 

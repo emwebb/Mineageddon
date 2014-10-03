@@ -1,4 +1,4 @@
-package com.dexoria.mineageddon.core;
+package com.dexoria.mineageddon.system;
 
 public interface SubSystem {
 	public void onEnable();

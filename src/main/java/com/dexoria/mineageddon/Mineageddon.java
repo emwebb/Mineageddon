@@ -9,12 +9,12 @@ import org.bukkit.plugin.java.JavaPlugin;
 import com.dexoria.mineageddon.command.CommandHandler;
 import com.dexoria.mineageddon.configuration.Config;
 import com.dexoria.mineageddon.gadgets.Gadget;
-import com.dexoria.mineageddon.game.GameSystem;
 import com.dexoria.mineageddon.mysql.MySQL;
-import com.dexoria.mineageddon.scoresystem.ScoreSystem;
-import com.dexoria.mineageddon.scoresystem.ScoreSystemListener;
-import com.dexoria.mineageddon.shopsystem.ShopSystem;
-import com.dexoria.mineageddon.statistics.StatisticsSystem;
+import com.dexoria.mineageddon.system.game.GameSystem;
+import com.dexoria.mineageddon.system.score.ScoreSystem;
+import com.dexoria.mineageddon.system.score.ScoreSystemListener;
+import com.dexoria.mineageddon.system.shop.ShopSystem;
+import com.dexoria.mineageddon.system.statistics.StatisticsSystem;
 
 
 public class Mineageddon extends JavaPlugin{

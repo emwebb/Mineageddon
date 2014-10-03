@@ -10,17 +10,16 @@ import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
 
 import com.dexoria.mineageddon.Mineageddon;
-import com.dexoria.mineageddon.core.SubSystem;
+import com.dexoria.mineageddon.system.SubSystem;
 import com.dexoria.mineageddon.utils.FileUtils;
 
 public class Config implements SubSystem{
+	
 	private static final String ALLOWED_WORLDS_ID = "allowedWorlds";
+	
 	private static final String DATABASE_HOST = "database.hostname";
-
 	private static final String DATABASE_PORT = "database.port";
-
 	private static final String DATABASE_DB = "database.db";
-
 	private static final String DATABASE_USERNAME = "database.username";
 	private static final String DATABASE_PASSWORD = "database.password";
 	

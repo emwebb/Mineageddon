@@ -1,4 +1,4 @@
-package com.dexoria.mineageddon.statistics;
+package com.dexoria.mineageddon.system.statistics;
 
 import org.bukkit.entity.EntityType;
 import org.bukkit.event.EventHandler;

@@ -1,4 +1,4 @@
-package com.dexoria.mineageddon.statistics;
+package com.dexoria.mineageddon.system.statistics;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -7,8 +7,8 @@ import org.bukkit.Bukkit;
 import org.bukkit.event.HandlerList;
 
 import com.dexoria.mineageddon.Mineageddon;
-import com.dexoria.mineageddon.core.SubSystem;
 import com.dexoria.mineageddon.gadgets.Gadget;
+import com.dexoria.mineageddon.system.SubSystem;
 
 public class StatisticsSystem implements SubSystem{
 	

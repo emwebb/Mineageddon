@@ -1,4 +1,4 @@
-package com.dexoria.mineageddon.game;
+package com.dexoria.mineageddon.system.game;
 
 import org.bukkit.Bukkit;
 import org.bukkit.Material;

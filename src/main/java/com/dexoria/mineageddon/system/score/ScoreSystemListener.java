@@ -1,4 +1,4 @@
-package com.dexoria.mineageddon.scoresystem;
+package com.dexoria.mineageddon.system.score;
 
 import java.util.logging.Level;
 

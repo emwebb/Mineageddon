@@ -1,4 +1,4 @@
-package com.dexoria.mineageddon.scoresystem;
+package com.dexoria.mineageddon.system.score;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -8,7 +8,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.HandlerList;
 
 import com.dexoria.mineageddon.Mineageddon;
-import com.dexoria.mineageddon.core.SubSystem;
+import com.dexoria.mineageddon.system.SubSystem;
 
 public class ScoreSystem implements SubSystem{
 	

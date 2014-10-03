@@ -1,4 +1,4 @@
-package com.dexoria.mineageddon.game;
+package com.dexoria.mineageddon.system.game;
 
 import java.util.ArrayList;
 import java.util.List;
