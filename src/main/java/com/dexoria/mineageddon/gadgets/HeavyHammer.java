@@ -25,40 +25,49 @@ public class HeavyHammer extends Gadget {
 	public HeavyHammer() {
 		super("HEAVYHAMMER", Material.DIAMOND_AXE);
 	}
-	
+
 	@Override
 	public void onPlayerInteractEvent(PlayerInteractEvent event) {
 		super.onPlayerInteractEvent(event);
-		if(event.getAction() == Action.LEFT_CLICK_BLOCK) {
-			WorldUtils.createExplosion(event.getPlayer().getWorld(), event.getPlayer(), event.getClickedBlock().getLocation(), 5, false, true);
+		if (event.getAction() == Action.LEFT_CLICK_BLOCK) {
+			WorldUtils.createExplosion(event.getPlayer().getWorld(),
+					event.getPlayer(), event.getClickedBlock().getLocation(),
+					5, false, true);
 			event.getPlayer().damage(11.5, event.getPlayer());
 		}
 	}
-	
+
 	@Override
-	public void onEntityDamageByEntityBeingDamager(EntityDamageByEntityEvent event) {
+	public void onEntityDamageByEntityBeingDamager(
+			EntityDamageByEntityEvent event) {
 		super.onEntityDamageByEntityBeingDamager(event);
-		if(event.getCause() == DamageCause.ENTITY_ATTACK ) {
-			if(event.getEntity().isOnGround()){
-				Rocket rocketeer = new Rocket(event.getEntity(),new Vector(0,1,0),1);
-	    		Schedulable.scheduleSyncRepeatingTask(rocketeer,1);
+		if (event.getCause() == DamageCause.ENTITY_ATTACK) {
+			if (event.getEntity().isOnGround()) {
+				Rocket rocketeer = new Rocket(event.getEntity(), new Vector(0,
+						1, 0), 1);
+				Schedulable.scheduleSyncRepeatingTask(rocketeer, 1);
 			} else {
-				Vector vec = new Vector(Math.cos(Math.toRadians(event.getDamager().getLocation().getYaw())+(Math.PI/2)),0,Math.sin(Math.toRadians(event.getDamager().getLocation().getYaw())+(Math.PI/2)));
-				Rocket rocketeer = new Rocket(event.getEntity(), vec,1);
-	    		Schedulable.scheduleSyncRepeatingTask(rocketeer,1);
+				Vector vec = new Vector(Math.cos(Math.toRadians(event
+						.getDamager().getLocation().getYaw())
+						+ (Math.PI / 2)), 0, Math.sin(Math.toRadians(event
+						.getDamager().getLocation().getYaw())
+						+ (Math.PI / 2)));
+				Rocket rocketeer = new Rocket(event.getEntity(), vec, 1);
+				Schedulable.scheduleSyncRepeatingTask(rocketeer, 1);
 			}
-			
+
 		}
-		
+
 	}
-	
+
 	@Override
 	public void whilePlayerHoldingGadget(Player player, int periodTime) {
 		super.whilePlayerHoldingGadget(player, periodTime);
 		player.removePotionEffect(PotionEffectType.SLOW_DIGGING);
-		player.addPotionEffect(new PotionEffect(PotionEffectType.SLOW_DIGGING, 50, 10));
+		player.addPotionEffect(new PotionEffect(PotionEffectType.SLOW_DIGGING,
+				50, 10));
 	}
-	
+
 	@Override
 	public ItemStack createItem() {
 		ItemStack item = new ItemStack(Material.DIAMOND_AXE);
@@ -72,5 +81,5 @@ public class HeavyHammer extends Gadget {
 		item.setAmount(1);
 		return item;
 	}
-	
+
 }

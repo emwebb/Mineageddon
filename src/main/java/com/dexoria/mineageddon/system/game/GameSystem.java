@@ -28,7 +28,7 @@ public class GameSystem implements SubSystem {
 
 	private Random rand;
 
-	private GameManagerListener gml;
+	private GameSystemListener gml;
 	private BorderManager borderManager;
 
 	private List<String> playersToRespawn;
@@ -39,7 +39,7 @@ public class GameSystem implements SubSystem {
 	}
 
 	public void onEnable() {
-		gml = new GameManagerListener();
+		gml = new GameSystemListener();
 		Bukkit.getPluginManager()
 				.registerEvents(gml, Mineageddon.getInstance());
 		borderManager = new BorderManager();

@@ -18,7 +18,7 @@ import org.bukkit.potion.PotionType;
 
 import com.dexoria.mineageddon.Mineageddon;
 
-public class GameManagerListener implements Listener {
+public class GameSystemListener implements Listener {
 
 	@EventHandler
 	public void onEntityDeath(EntityDeathEvent event) {
