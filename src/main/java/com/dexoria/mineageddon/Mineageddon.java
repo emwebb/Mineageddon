@@ -20,7 +20,6 @@ import com.dexoria.mineageddon.statistics.StatisticsSystem;
 public class Mineageddon extends JavaPlugin{
 	private static Mineageddon instance;
 	
-	private ScoreSystemListener ssl;
 	private ScoreSystem ss;
 	private Config config;
 	private MySQL sql;
@@ -42,8 +41,6 @@ public class Mineageddon extends JavaPlugin{
 				Mineageddon.getConfigStaticly().getDBPassword());
 		ss = new ScoreSystem();
 		ss.onEnable();
-		ssl = new ScoreSystemListener();
-		getServer().getPluginManager().registerEvents(ssl, this);
 		Gadget.onEnable();
 		this.getCommand("mineageddon").setExecutor(new CommandHandler());
 		stats = new StatisticsSystem();
@@ -55,7 +52,6 @@ public class Mineageddon extends JavaPlugin{
 	public void onDisable() {
 		stats.onDisable();
 		Gadget.onDisable();
-		HandlerList.unregisterAll(ssl);
 
 		ss.onDisable();
 		try {

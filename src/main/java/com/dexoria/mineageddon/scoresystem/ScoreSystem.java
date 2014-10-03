@@ -5,19 +5,24 @@ import java.sql.SQLException;
 
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
+import org.bukkit.event.HandlerList;
 
 import com.dexoria.mineageddon.Mineageddon;
 import com.dexoria.mineageddon.core.SubSystem;
 
 public class ScoreSystem implements SubSystem{
-	public void onEnable() {
-		
 	
+
+	private ScoreSystemListener ssl;
+	
+	public void onEnable() {
+		ssl = new ScoreSystemListener();
+		Bukkit.getServer().getPluginManager().registerEvents(ssl, Mineageddon.getInstance());
 		
 	}
 	
 	public void onDisable() {
-		
+		HandlerList.unregisterAll(ssl);
 	}
 	
 	public boolean playerExists(String playerUUID) {
