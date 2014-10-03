@@ -13,7 +13,7 @@ import com.dexoria.mineageddon.Mineageddon;
 import com.dexoria.mineageddon.system.SubSystem;
 import com.dexoria.mineageddon.utils.FileUtils;
 
-public class Config implements SubSystem {
+public class Config {
 
 	private static final String ALLOWED_WORLDS_ID = "allowedWorlds";
 
