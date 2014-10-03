@@ -44,7 +44,7 @@ public class CommandHandler implements CommandExecutor {
 	private void join(CommandSender sender, Command cmd, String label,
 			String[] args) {
 		if(sender instanceof Player) {
-			Mineageddon.getGameManager().setupPlayer((Player) sender);
+			Mineageddon.getGameSystem().setupPlayer((Player) sender);
 		} else {
 			sender.sendMessage("This can only be exacuted by players!");
 		}

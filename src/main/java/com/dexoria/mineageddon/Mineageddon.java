@@ -9,7 +9,7 @@ import org.bukkit.plugin.java.JavaPlugin;
 import com.dexoria.mineageddon.command.CommandHandler;
 import com.dexoria.mineageddon.configuration.Config;
 import com.dexoria.mineageddon.gadgets.Gadget;
-import com.dexoria.mineageddon.game.GameManager;
+import com.dexoria.mineageddon.game.GameSystem;
 import com.dexoria.mineageddon.mysql.MySQL;
 import com.dexoria.mineageddon.scoresystem.ScoreSystem;
 import com.dexoria.mineageddon.scoresystem.ScoreSystemListener;
@@ -24,7 +24,7 @@ public class Mineageddon extends JavaPlugin{
 	private ScoreSystem ss;
 	private Config config;
 	private MySQL sql;
-	private GameManager gm;
+	private GameSystem gs;
 	private StatisticsSystem stats;
 	private ShopSystem shopSystem;
 	@Override
@@ -32,8 +32,8 @@ public class Mineageddon extends JavaPlugin{
 		instance = this;
 		config = new Config();
 		config.onEnable();
-		gm = new GameManager();
-		gm.onEnable();
+		gs = new GameSystem();
+		gs.onEnable();
 		sql = new MySQL(Mineageddon.getInstance(),
 				Mineageddon.getConfigStaticly().getDBHostName(),
 				Mineageddon.getConfigStaticly().getDBPort(),
@@ -64,10 +64,10 @@ public class Mineageddon extends JavaPlugin{
 			// Can't allow a crash here so no print stack trace.
 			
 		}
-		gm.onDisable();
+		gs.onDisable();
 		config.onDisable();
 		shopSystem.onDisable();
-		gm = null;
+		gs = null;
 		sql = null;
 		ss = null;
 		config = null;
@@ -100,8 +100,8 @@ public class Mineageddon extends JavaPlugin{
 		return instance.sql;
 	}
 	
-	public static GameManager getGameManager() {
-		return instance.gm;
+	public static GameSystem getGameSystem() {
+		return instance.gs;
 	}
 	
 	public static StatisticsSystem getStatisticsSystem() {

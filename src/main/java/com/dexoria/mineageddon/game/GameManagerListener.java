@@ -32,7 +32,7 @@ public class GameManagerListener implements Listener {
 			event.getDrops().add(potion.toItemStack(1));
 			event.getDrops().add(new ItemStack(Material.COOKIE,3));
 			
-			Mineageddon.getGameManager().addPlayerToRespawnList((Player)event.getEntity());
+			Mineageddon.getGameSystem().addPlayerToRespawnList((Player)event.getEntity());
 		}
 	}
 	
@@ -48,9 +48,9 @@ public class GameManagerListener implements Listener {
 	@EventHandler
 	public void onPlayerRespawn(PlayerRespawnEvent event) {
 		
-		if(Mineageddon.getGameManager().playerOnRespawnList(event.getPlayer())) {
-			Mineageddon.getGameManager().removePlayerFromRespawnList(event.getPlayer());
-			Mineageddon.getGameManager().setupPlayer(event.getPlayer());
+		if(Mineageddon.getGameSystem().playerOnRespawnList(event.getPlayer())) {
+			Mineageddon.getGameSystem().removePlayerFromRespawnList(event.getPlayer());
+			Mineageddon.getGameSystem().setupPlayer(event.getPlayer());
 		}
 	
 	}

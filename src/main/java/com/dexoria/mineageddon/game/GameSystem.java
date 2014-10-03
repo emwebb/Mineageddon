@@ -20,7 +20,7 @@ import com.dexoria.mineageddon.Mineageddon;
 import com.dexoria.mineageddon.core.SubSystem;
 import com.dexoria.mineageddon.gadgets.Gadget;
 
-public class GameManager implements SubSystem{
+public class GameSystem implements SubSystem{
 	
 	public static final int WORLD_SIZE = 100;
 	
@@ -32,7 +32,7 @@ public class GameManager implements SubSystem{
 	private BorderManager borderManager;
 	
 	private List<String> playersToRespawn;
-	public GameManager() {
+	public GameSystem() {
 		rand = new Random();
 		
 	}
