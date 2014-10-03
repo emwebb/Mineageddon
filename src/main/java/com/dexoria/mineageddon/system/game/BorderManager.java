@@ -8,7 +8,7 @@ import org.bukkit.scheduler.BukkitScheduler;
 import com.dexoria.mineageddon.Mineageddon;
 import com.dexoria.mineageddon.system.SubSystem;
 
-public class BorderManager implements SubSystem {
+public class BorderManager {
 	private int warningScheduleID;
 
 	public void onEnable() {
