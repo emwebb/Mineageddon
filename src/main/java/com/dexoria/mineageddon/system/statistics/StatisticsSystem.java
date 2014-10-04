@@ -104,7 +104,7 @@ public class StatisticsSystem implements SubSystem {
 			Mineageddon
 					.getMySQL()
 					.updateSQL(
-							"INSERT INTO `mcph196778`.`mgStatistics` (`ID`, `Gadget`, `diedWith`, `killedWith`, 'suicide') VALUES (NULL, '"
+							"INSERT INTO `mcph196778`.`mgStatistics` (`ID`, `Gadget`, `diedWith`, `killedWith`, `suicide`) VALUES (NULL, '"
 									+ gadget + "', '0', '0', '0');");
 		} catch (SQLException | ClassNotFoundException e) {
 			// TODO Auto-generated catch block

@@ -24,24 +24,29 @@ public class StatisticsSystemListener implements Listener {
 						.getKiller().getUniqueId()) {
 					for (ItemStack item : event.getEntity().getKiller()
 							.getInventory().getContents()) {
-						String vannilaID = item.getType().name() + ":"
-								+ item.getDurability();
-						if (Gadget.isVanillaItemGadget(vannilaID)) {
-							Mineageddon.getStatisticsSystem()
-									.increaseKilledWith(
-											Gadget.getGadgetFromVanillaID(
-													vannilaID).getName());
+						if (item != null) {
+							String vannilaID = item.getType().name() + ":"
+									+ item.getDurability();
+							if (Gadget.isVanillaItemGadget(vannilaID)) {
+								Mineageddon.getStatisticsSystem()
+										.increaseKilledWith(
+												Gadget.getGadgetFromVanillaID(
+														vannilaID).getName());
+							}
 						}
 					}
 				} else {
 					for (ItemStack item : event.getEntity().getKiller()
 							.getInventory().getContents()) {
-						String vannilaID = item.getType().name() + ":"
-								+ item.getDurability();
-						if (Gadget.isVanillaItemGadget(vannilaID)) {
-							Mineageddon.getStatisticsSystem().increaseSuicide(
-									Gadget.getGadgetFromVanillaID(vannilaID)
-											.getName());
+						if (item != null) {
+							String vannilaID = item.getType().name() + ":"
+									+ item.getDurability();
+							if (Gadget.isVanillaItemGadget(vannilaID)) {
+								Mineageddon.getStatisticsSystem()
+										.increaseSuicide(
+												Gadget.getGadgetFromVanillaID(
+														vannilaID).getName());
+							}
 						}
 					}
 				}
@@ -51,12 +56,14 @@ public class StatisticsSystemListener implements Listener {
 			if (event.getEntity().getType() == EntityType.PLAYER) {
 				for (ItemStack item : event.getEntity().getKiller()
 						.getInventory().getContents()) {
-					String vannilaID = item.getType().name() + ":"
-							+ item.getDurability();
-					if (Gadget.isVanillaItemGadget(vannilaID)) {
-						Mineageddon.getStatisticsSystem().increaseDiedWith(
-								Gadget.getGadgetFromVanillaID(vannilaID)
-										.getName());
+					if (item != null) {
+						String vannilaID = item.getType().name() + ":"
+								+ item.getDurability();
+						if (Gadget.isVanillaItemGadget(vannilaID)) {
+							Mineageddon.getStatisticsSystem().increaseDiedWith(
+									Gadget.getGadgetFromVanillaID(vannilaID)
+											.getName());
+						}
 					}
 				}
 			}
@@ -64,11 +71,14 @@ public class StatisticsSystemListener implements Listener {
 		} else if (event.getEntity().getType() == EntityType.PLAYER) {
 			for (ItemStack item : event.getEntity().getKiller().getInventory()
 					.getContents()) {
-				String vannilaID = item.getType().name() + ":"
-						+ item.getDurability();
-				if (Gadget.isVanillaItemGadget(vannilaID)) {
-					Mineageddon.getStatisticsSystem().increaseSuicide(
-							Gadget.getGadgetFromVanillaID(vannilaID).getName());
+				if (item != null) {
+					String vannilaID = item.getType().name() + ":"
+							+ item.getDurability();
+					if (Gadget.isVanillaItemGadget(vannilaID)) {
+						Mineageddon.getStatisticsSystem().increaseSuicide(
+								Gadget.getGadgetFromVanillaID(vannilaID)
+										.getName());
+					}
 				}
 			}
 		}

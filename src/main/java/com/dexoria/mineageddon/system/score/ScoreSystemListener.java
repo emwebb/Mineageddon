@@ -60,8 +60,9 @@ public class ScoreSystemListener implements Listener {
 	}
 
 	public void killedByNothing(Player player) {
-		Mineageddon.getScoreSystem().removePercentageOfScore(
-				player.getUniqueId().toString(), 0.01f);
+		Mineageddon.getScoreSystem()
+				.removePercentageOfPointsAndTransferToPlayersOnTheServer(
+						player.getUniqueId().toString(), 0.01f);
 
 	}
 

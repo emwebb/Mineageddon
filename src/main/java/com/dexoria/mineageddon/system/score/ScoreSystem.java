@@ -111,8 +111,7 @@ public class ScoreSystem implements SubSystem {
 						int numOfPlayers = 0;
 						for (Player player : Bukkit.getOnlinePlayers()) {
 							if (Mineageddon.getConfigStaticly().isAllowedWorld(
-									player.getWorld().getName())
-									&& player.getUniqueId().toString() != playerUID) {
+									player.getWorld().getName())) {
 								numOfPlayers++;
 							}
 						}
@@ -120,8 +119,7 @@ public class ScoreSystem implements SubSystem {
 						int gain = loss / numOfPlayers;
 						for (Player player : Bukkit.getOnlinePlayers()) {
 							if (Mineageddon.getConfigStaticly().isAllowedWorld(
-									player.getWorld().getName())
-									&& player.getUniqueId().toString() != playerUID) {
+									player.getWorld().getName())) {
 								int playerSocre = getPlayerScore(player
 										.getUniqueId().toString());
 								int newScore = playerSocre + gain;

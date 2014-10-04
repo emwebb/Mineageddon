@@ -1,0 +1,8 @@
+allowedWorlds: []
+database:
+  hostname: localhost
+  port: 3306
+  db: database
+  username: username
+  password: password
+usebar: true

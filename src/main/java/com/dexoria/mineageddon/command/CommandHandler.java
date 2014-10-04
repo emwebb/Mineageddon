@@ -35,11 +35,35 @@ public class CommandHandler implements CommandExecutor {
 			case "join":
 				join(sender, cmd, label, args);
 				return true;
+			case "usebar":
+				useBar(sender, cmd, label, args);
+				return true;
 
 			}
 			return true;
 		}
 		return false;
+	}
+
+	private void useBar(CommandSender sender, Command cmd, String label,
+			String[] args) {
+		if (args.length != 2) {
+			sender.sendMessage("Usage: /mineageddon usebar [true/false]");
+			return;
+		}
+
+		switch (args[1].toLowerCase()) {
+		case "true":
+			Mineageddon.getConfigStaticly().setUseBar(true);
+			break;
+		case "false":
+			Mineageddon.getConfigStaticly().setUseBar(false);
+			break;
+		default:
+			sender.sendMessage("Usage: /mineageddon usebar [true/false]");
+			break;
+		}
+
 	}
 
 	private void join(CommandSender sender, Command cmd, String label,

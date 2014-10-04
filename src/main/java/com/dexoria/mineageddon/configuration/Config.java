@@ -22,6 +22,7 @@ public class Config {
 	private static final String DATABASE_DB = "database.db";
 	private static final String DATABASE_USERNAME = "database.username";
 	private static final String DATABASE_PASSWORD = "database.password";
+	private static final String USE_BAR = "usebar";
 
 	private File configFile;
 	private FileConfiguration config;
@@ -114,6 +115,15 @@ public class Config {
 
 	public String getDBPassword() {
 		return config.getString(DATABASE_PASSWORD);
+	}
+	
+	
+	public boolean canUseBar() {
+		return config.getBoolean(USE_BAR);
+	}
+
+	public void setUseBar(boolean useBar) {
+		config.set(USE_BAR, useBar);
 	}
 
 }
