@@ -74,12 +74,15 @@ public class GameSystemListener implements Listener {
 
 						@Override
 						public void run() {
-							player.getInventory().getBoots()
-									.setDurability((short) 0);
-							player.getInventory().getLeggings()
-									.setDurability((short) 0);
-							player.getInventory().getChestplate()
-									.setDurability((short) 0);
+							if (player.getInventory().getBoots() != null)
+								player.getInventory().getBoots()
+										.setDurability((short) 0);
+							if (player.getInventory().getLeggings() != null)
+								player.getInventory().getLeggings()
+										.setDurability((short) 0);
+							if (player.getInventory().getChestplate() != null)
+								player.getInventory().getChestplate()
+										.setDurability((short) 0);
 
 						}
 					}, 1);
