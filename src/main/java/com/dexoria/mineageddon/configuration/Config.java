@@ -23,6 +23,7 @@ public class Config {
 	private static final String DATABASE_USERNAME = "database.username";
 	private static final String DATABASE_PASSWORD = "database.password";
 	private static final String USE_BAR = "usebar";
+	
 
 	private File configFile;
 	private FileConfiguration config;

@@ -8,6 +8,9 @@ import org.bukkit.entity.Player;
 
 import com.dexoria.mineageddon.Mineageddon;
 import com.dexoria.mineageddon.gadgets.Gadget;
+import com.dexoria.mineageddon.perks.Nuke;
+import com.dexoria.mineageddon.perks.Rocket;
+import com.dexoria.mineageddon.utils.Schedulable;
 
 public class CommandHandler implements CommandExecutor {
 
@@ -38,11 +41,26 @@ public class CommandHandler implements CommandExecutor {
 			case "usebar":
 				useBar(sender, cmd, label, args);
 				return true;
+			case "nuke":
+				nuke(sender, cmd, label, args);
+				return true;
 
 			}
 			return true;
 		}
 		return false;
+	}
+
+	private void nuke(CommandSender sender, Command cmd, String label,
+			String[] args) {
+		if (!sender.hasPermission("mineageddon.admin")) {
+			sender.sendMessage("Insufficient permission");
+			return;
+		}
+		
+		Nuke nuke = new Nuke(10);
+		Schedulable.scheduleSyncRepeatingTask(nuke, 1);
+		
 	}
 
 	private void useBar(CommandSender sender, Command cmd, String label,
