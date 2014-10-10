@@ -10,10 +10,13 @@ import org.bukkit.block.Block;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.LightningStrike;
 import org.bukkit.entity.LivingEntity;
+import org.bukkit.entity.Player;
 import org.bukkit.event.block.Action;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
+import org.bukkit.potion.PotionEffect;
+import org.bukkit.potion.PotionEffectType;
 
 public class LightningWand extends Gadget {
 
@@ -25,7 +28,8 @@ public class LightningWand extends Gadget {
 	@Override
 	public void onPlayerInteractEvent(PlayerInteractEvent event) {
 		super.onPlayerInteractEvent(event);
-		if (event.getAction() != Action.PHYSICAL) {
+		if (event.getAction() == Action.LEFT_CLICK_AIR
+				|| event.getAction() == Action.LEFT_CLICK_BLOCK) {
 			@SuppressWarnings("deprecation")
 			Block lookingAt = event.getPlayer().getTargetBlock(null, 120);
 			if (lookingAt != null) {
@@ -43,12 +47,20 @@ public class LightningWand extends Gadget {
 			}
 			if (event.getPlayer().getFoodLevel() > 0) {
 				event.getPlayer().setFoodLevel(
-						event.getPlayer().getFoodLevel() - 1);
+						event.getPlayer().getFoodLevel() - 2);
 			} else {
-				event.getPlayer().damage(0.5);
+				event.getPlayer().damage(1.5);
 			}
 
 		}
+	}
+
+	@Override
+	public void whilePlayerHoldingGadget(Player player, int periodTime) {
+		super.whilePlayerHoldingGadget(player, periodTime);
+		player.removePotionEffect(PotionEffectType.SLOW_DIGGING);
+		player.addPotionEffect(new PotionEffect(PotionEffectType.SLOW_DIGGING,
+				50, 10));
 	}
 
 	@Override
