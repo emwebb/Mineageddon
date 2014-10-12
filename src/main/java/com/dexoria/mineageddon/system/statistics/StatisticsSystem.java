@@ -10,11 +10,13 @@ import com.dexoria.mineageddon.Mineageddon;
 import com.dexoria.mineageddon.gadgets.Gadget;
 import com.dexoria.mineageddon.system.SubSystem;
 
-public class StatisticsSystem implements SubSystem {
+public class StatisticsSystem extends SubSystem {
 
 	private StatisticsSystemListener ssl;
 
 	public void onEnable() {
+
+		super.onEnable();
 		for (String gadgetName : Gadget.getAllGadget().keySet()) {
 			addGadgetIfMissing(gadgetName);
 		}
@@ -126,6 +128,8 @@ public class StatisticsSystem implements SubSystem {
 
 	public void onDisable() {
 		HandlerList.unregisterAll(ssl);
+
+		super.onDisable();
 
 	}
 }

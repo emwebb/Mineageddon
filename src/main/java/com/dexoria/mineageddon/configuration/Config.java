@@ -10,7 +10,7 @@ import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
 
 import com.dexoria.mineageddon.Mineageddon;
-import com.dexoria.mineageddon.system.SubSystem;
+import com.dexoria.mineageddon.system.ISubSystem;
 import com.dexoria.mineageddon.utils.FileUtils;
 
 public class Config {

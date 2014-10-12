@@ -13,11 +13,12 @@ import org.bukkit.scheduler.BukkitTask;
 import com.dexoria.mineageddon.Mineageddon;
 import com.dexoria.mineageddon.system.SubSystem;
 
-public class DisplaySystem implements SubSystem {
+public class DisplaySystem extends SubSystem {
 
 	private BukkitTask task;
 
 	public void onEnable() {
+		super.onEnable();
 		BukkitScheduler scheduler = Bukkit.getServer().getScheduler();
 		task = scheduler.runTaskTimerAsynchronously(Mineageddon.getInstance(),
 				new Display20TickSchedule(), 0, 20);
@@ -25,7 +26,9 @@ public class DisplaySystem implements SubSystem {
 
 	public void onDisable() {
 		task.cancel();
-	}
+		task = null;
+		super.onDisable();
+	}	
 
 	public class Display20TickSchedule implements Runnable {
 
@@ -56,5 +59,7 @@ public class DisplaySystem implements SubSystem {
 
 		}
 	}
+
+	
 
 }

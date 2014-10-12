@@ -6,11 +6,11 @@ import org.bukkit.entity.Player;
 import org.bukkit.scheduler.BukkitScheduler;
 
 import com.dexoria.mineageddon.Mineageddon;
-import com.dexoria.mineageddon.system.SubSystem;
+import com.dexoria.mineageddon.system.ISubSystem;
 
 public class BorderManager {
 	private int warningScheduleID;
-
+	private int dislayScheduleID;
 	public void onEnable() {
 		BukkitScheduler scheduler = Bukkit.getServer().getScheduler();
 		warningScheduleID = scheduler.scheduleSyncRepeatingTask(
@@ -49,6 +49,16 @@ public class BorderManager {
 
 		}
 
+	}
+	
+	public class BorderDisplayTick implements Runnable {
+
+		@Override
+		public void run() {
+			// TODO Auto-generated method stub
+			
+		}
+		
 	}
 
 }

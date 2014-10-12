@@ -10,11 +10,13 @@ import org.bukkit.event.HandlerList;
 import com.dexoria.mineageddon.Mineageddon;
 import com.dexoria.mineageddon.system.SubSystem;
 
-public class ScoreSystem implements SubSystem {
+public class ScoreSystem extends SubSystem {
 
 	private ScoreSystemListener ssl;
 
 	public void onEnable() {
+
+		super.onEnable();
 		ssl = new ScoreSystemListener();
 		Bukkit.getServer().getPluginManager()
 				.registerEvents(ssl, Mineageddon.getInstance());
@@ -23,6 +25,7 @@ public class ScoreSystem implements SubSystem {
 
 	public void onDisable() {
 		HandlerList.unregisterAll(ssl);
+		super.onDisable();
 	}
 
 	public boolean playerExists(String playerUUID) {

@@ -20,7 +20,7 @@ import com.dexoria.mineageddon.Mineageddon;
 import com.dexoria.mineageddon.gadgets.Gadget;
 import com.dexoria.mineageddon.system.SubSystem;
 
-public class GameSystem implements SubSystem {
+public class GameSystem extends SubSystem {
 
 	public static final int WORLD_SIZE = 100;
 
@@ -39,6 +39,7 @@ public class GameSystem implements SubSystem {
 	}
 
 	public void onEnable() {
+		super.onEnable();
 		gml = new GameSystemListener();
 		Bukkit.getPluginManager()
 				.registerEvents(gml, Mineageddon.getInstance());
@@ -55,6 +56,7 @@ public class GameSystem implements SubSystem {
 		borderManager = null;
 
 		playersToRespawn = null;
+		super.onDisable();
 	}
 
 	public boolean playerOnRespawnList(Player player) {
@@ -157,4 +159,6 @@ public class GameSystem implements SubSystem {
 		return loc;
 
 	}
+
+
 }
