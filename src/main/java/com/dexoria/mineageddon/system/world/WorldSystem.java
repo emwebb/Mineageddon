@@ -1,12 +1,14 @@
 package com.dexoria.mineageddon.system.world;
 
 import java.io.File;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
 import org.bukkit.Bukkit;
 import org.bukkit.World;
 
+import com.dexoria.mineageddon.Mineageddon;
 import com.dexoria.mineageddon.system.SubSystem;
 
 public class WorldSystem extends SubSystem {
@@ -17,9 +19,11 @@ public class WorldSystem extends SubSystem {
 	public void onEnable() {
 		worldConfigurations = new HashMap<String,WorldConfig>();
 		for(World world : Bukkit.getWorlds()) {
-			File configFile = new File(world.getWorldFolder().getPath() + File.pathSeparator + CONFIG_FILE_NAME);
+			File configFile = new File(world.getWorldFolder().getPath() + File.separatorChar + CONFIG_FILE_NAME);
+			Mineageddon.getLoggerStaticly().info("Checking for MG World Config at: " + configFile.getAbsolutePath());
 			if(configFile.exists()) {
-				worldConfigurations.put(world.getName(), new WorldConfig(configFile.getPath()));
+				Mineageddon.getLoggerStaticly().info("FOUND!");
+				worldConfigurations.put(world.getName(), new WorldConfig(configFile.getAbsolutePath()));
 			}
 				
 			
@@ -41,7 +45,7 @@ public class WorldSystem extends SubSystem {
 	}
 
 	public String[] getMgWorlds() {
-		return (String[]) worldConfigurations.keySet().toArray();
+		return Arrays.copyOf(worldConfigurations.keySet().toArray(), worldConfigurations.keySet().toArray().length, String[].class);
 	}
 
 	public void removeMgWorld(String world) {
@@ -55,7 +59,7 @@ public class WorldSystem extends SubSystem {
 	public void addMgWorld(String worldName) {
 		if(!worldConfigurations.containsKey(worldName)) {
 			World world = Bukkit.getWorld(worldName);
-			File configFile = new File(world.getWorldFolder().getPath() + File.pathSeparator + CONFIG_FILE_NAME);
+			File configFile = new File(world.getWorldFolder().getAbsolutePath() + File.separatorChar + CONFIG_FILE_NAME);
 			worldConfigurations.put(worldName, new WorldConfig(configFile.getPath()));
 			
 		}

@@ -89,8 +89,10 @@ public class Mineageddon extends JavaPlugin {
 		shopSystem = new ShopSystem();
 		displaySystem = new DisplaySystem();
 		
-		worldSystem.onEnable();
+
 		Gadget.onEnable();
+		
+		worldSystem.onEnable();
 		gameSystem.onEnable();
 		statisticsSystem.onEnable();
 		scoreSystem.onEnable();

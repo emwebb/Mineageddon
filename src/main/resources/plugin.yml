@@ -13,3 +13,4 @@ permissions:
     default: op
   mineageddon.basic:
     default: true
+softdepend: [Multiverse-Core]
