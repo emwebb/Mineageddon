@@ -14,6 +14,7 @@ import com.dexoria.mineageddon.system.game.GameSystem;
 import com.dexoria.mineageddon.system.score.ScoreSystem;
 import com.dexoria.mineageddon.system.shop.ShopSystem;
 import com.dexoria.mineageddon.system.statistics.StatisticsSystem;
+import com.dexoria.mineageddon.system.world.WorldSystem;
 
 /**
  * @author nxsupert
@@ -55,8 +56,15 @@ public class Mineageddon extends JavaPlugin {
 	 * The instance of the Shop System.
 	 */
 	private ShopSystem shopSystem;
-	
+	/**
+	 * The instance of the Display System.
+	 */
 	private DisplaySystem displaySystem;
+	
+	/**
+	 * The instance of the World System
+	 */
+	private WorldSystem worldSystem;
 
 	/*
 	 * (non-Javadoc)
@@ -73,15 +81,16 @@ public class Mineageddon extends JavaPlugin {
 		sql = new MySQL(this, config.getDBHostName(), config.getDBPort(),
 				config.getDBDatabase(), config.getDBUsername(),
 				config.getDBPassword());
-
+		
+		worldSystem = new WorldSystem();
 		gameSystem = new GameSystem();
 		statisticsSystem = new StatisticsSystem();
 		scoreSystem = new ScoreSystem();
 		shopSystem = new ShopSystem();
 		displaySystem = new DisplaySystem();
-
+		
+		worldSystem.onEnable();
 		Gadget.onEnable();
-
 		gameSystem.onEnable();
 		statisticsSystem.onEnable();
 		scoreSystem.onEnable();
@@ -114,6 +123,7 @@ public class Mineageddon extends JavaPlugin {
 		gameSystem.onDisable();
 		config.onDisable();
 		shopSystem.onDisable();
+		worldSystem.onDisable();
 		gameSystem = null;
 		sql = null;
 		scoreSystem = null;
@@ -121,6 +131,7 @@ public class Mineageddon extends JavaPlugin {
 		statisticsSystem = null;
 		shopSystem = null;
 		displaySystem = null;
+		worldSystem = null;
 		instance = null;
 	}
 
@@ -191,13 +202,18 @@ public class Mineageddon extends JavaPlugin {
 	 * @return the instance of
 	 *         {@link com.dexoria.mineageddon.Mineageddon#shopSystem} .
 	 */
-	public ShopSystem getShopSystem() {
-		return shopSystem;
+	public static ShopSystem getShopSystem() {
+		return instance.shopSystem;
 	}
 
-	public DisplaySystem getDisplaySystem() {
-		return displaySystem;
+	public static DisplaySystem getDisplaySystem() {
+		return instance.displaySystem;
 	}
+
+	public static WorldSystem getWorldSystem() {
+		return instance.worldSystem;
+	}
+
 
 
 }

@@ -22,8 +22,7 @@ public class GameSystemListener implements Listener {
 
 	@EventHandler
 	public void onEntityDeath(EntityDeathEvent event) {
-		if (!Mineageddon.getConfigStaticly().isAllowedWorld(
-				event.getEntity().getWorld().getName()))
+		if (!Mineageddon.getWorldSystem().isMgWorld(event.getEntity().getWorld().getName()))
 			return;
 
 		event.getDrops().clear();
@@ -40,8 +39,7 @@ public class GameSystemListener implements Listener {
 
 	@EventHandler
 	public void onBlockDrop(PlayerDropItemEvent event) {
-		if (!Mineageddon.getConfigStaticly().isAllowedWorld(
-				event.getPlayer().getWorld().getName()))
+		if (!Mineageddon.getWorldSystem().isMgWorld(event.getPlayer().getWorld().getName()))
 			return;
 
 		event.setCancelled(true);
@@ -61,8 +59,7 @@ public class GameSystemListener implements Listener {
 
 	@EventHandler(priority = EventPriority.NORMAL)
 	public void dmg(final EntityDamageEvent event) {
-		if (!Mineageddon.getConfigStaticly().isAllowedWorld(
-				event.getEntity().getWorld().getName()))
+		if (!Mineageddon.getWorldSystem().isMgWorld(event.getEntity().getWorld().getName()))
 			return;
 
 		Entity e = event.getEntity();

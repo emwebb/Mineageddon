@@ -29,8 +29,7 @@ public class BorderManager {
 
 		public void run() {
 			for (Player player : Bukkit.getOnlinePlayers()) {
-				if (Mineageddon.getConfigStaticly().isAllowedWorld(
-						player.getWorld().getName())) {
+				if (Mineageddon.getWorldSystem().isMgWorld(player.getWorld().getName())) {
 
 					double playerX = player.getLocation().getX();
 					double playerZ = player.getLocation().getZ();

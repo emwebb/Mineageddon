@@ -26,8 +26,7 @@ public class GadgetScheduler {
 
 		public void run() {
 			for (Player player : Bukkit.getOnlinePlayers()) {
-				if (Mineageddon.getConfigStaticly().isAllowedWorld(
-						player.getWorld().getName())) {
+				if (Mineageddon.getWorldSystem().isMgWorld(player.getWorld().getName())) {
 
 					ItemStack itemInHand = player.getItemInHand();
 					String vanillaID = itemInHand.getType().name() + ":"

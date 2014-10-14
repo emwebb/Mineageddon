@@ -15,7 +15,6 @@ import com.dexoria.mineageddon.utils.FileUtils;
 
 public class Config {
 
-	private static final String ALLOWED_WORLDS_ID = "allowedWorlds";
 
 	private static final String DATABASE_HOST = "database.hostname";
 	private static final String DATABASE_PORT = "database.port";
@@ -64,39 +63,7 @@ public class Config {
 
 	}
 
-	public List<String> getAllowedWorlds() {
-		return config.getStringList(ALLOWED_WORLDS_ID);
-	}
 
-	public void setAllowedWorlds(List<String> worlds) {
-		config.set(ALLOWED_WORLDS_ID, worlds);
-	}
-
-	public void addAllowedWorld(String world) {
-		List<String> allowedWorlds = getAllowedWorlds();
-		if (allowedWorlds.contains(world)) {
-			throw new IllegalArgumentException("World '" + world
-					+ "' is already in allowedWorlds");
-		} else {
-			allowedWorlds.add(world);
-			setAllowedWorlds(allowedWorlds);
-		}
-	}
-
-	public void removeAllowedWorld(String world) {
-		List<String> allowedWorlds = getAllowedWorlds();
-		if (!allowedWorlds.contains(world)) {
-			throw new IllegalArgumentException("World '" + world
-					+ "' is not in allowedWorlds");
-		} else {
-			allowedWorlds.remove(world);
-			setAllowedWorlds(allowedWorlds);
-		}
-	}
-
-	public boolean isAllowedWorld(String world) {
-		return getAllowedWorlds().contains(world);
-	}
 
 	public String getDBHostName() {
 		return config.getString(DATABASE_HOST);

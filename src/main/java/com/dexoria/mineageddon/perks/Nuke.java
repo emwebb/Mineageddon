@@ -24,8 +24,7 @@ public class Nuke extends Schedulable {
 		}
 		
 		for(Player player : Bukkit.getOnlinePlayers()) {
-			if (!Mineageddon.getConfigStaticly().isAllowedWorld(
-					player.getWorld().getName()))
+			if (!Mineageddon.getWorldSystem().isMgWorld(player.getWorld().getName()))
 				return;
 			player.getWorld().createExplosion(player.getLocation(), 5);
 		}

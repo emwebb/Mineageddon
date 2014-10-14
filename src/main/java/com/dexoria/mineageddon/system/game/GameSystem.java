@@ -139,11 +139,7 @@ public class GameSystem extends SubSystem {
 		boolean success = false;
 		Location loc = null;
 		while (!success) {
-			String worldName = Mineageddon
-					.getConfigStaticly()
-					.getAllowedWorlds()
-					.get(rand.nextInt(Mineageddon.getConfigStaticly()
-							.getAllowedWorlds().size()));
+			String worldName = Mineageddon.getWorldSystem().getMgWorlds()[rand.nextInt(Mineageddon.getWorldSystem().getMgWorlds().length)];
 			Block spawnBlock = Bukkit.getWorld(worldName).getHighestBlockAt(
 					rand.nextInt(WORLD_SIZE) - (WORLD_SIZE / 2),
 					rand.nextInt(WORLD_SIZE) - (WORLD_SIZE / 2));

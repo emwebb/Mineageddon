@@ -14,8 +14,7 @@ public class StatisticsSystemListener implements Listener {
 	@EventHandler(priority = EventPriority.MONITOR)
 	public void onEntityDeath(EntityDeathEvent event) {
 
-		if (!Mineageddon.getConfigStaticly().isAllowedWorld(
-				event.getEntity().getWorld().getName()))
+		if (!Mineageddon.getWorldSystem().isMgWorld(event.getEntity().getWorld().getName()))
 			return;
 
 		if (event.getEntity().getKiller() != null) {

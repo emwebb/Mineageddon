@@ -35,8 +35,7 @@ public class DisplaySystem extends SubSystem {
 		public void run() {
 			if (Mineageddon.getConfigStaticly().canUseBar()) {
 				for (final Player player : Bukkit.getOnlinePlayers()) {
-					if (Mineageddon.getConfigStaticly().isAllowedWorld(
-							player.getWorld().getName())) {
+					if (Mineageddon.getWorldSystem().isMgWorld(player.getWorld().getName())) {
 						final int score = Mineageddon
 								.getScoreSystem()
 								.getPlayerScore(player.getUniqueId().toString());

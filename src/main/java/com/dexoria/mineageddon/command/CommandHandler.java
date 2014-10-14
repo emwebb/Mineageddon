@@ -159,7 +159,7 @@ public class CommandHandler implements CommandExecutor {
 				return;
 			}
 			try {
-				Mineageddon.getConfigStaticly().addAllowedWorld(args[2]);
+				Mineageddon.getWorldSystem().addMgWorld(args[2]);
 			} catch (IllegalArgumentException e) {
 				sender.sendMessage("Error:" + e.getLocalizedMessage());
 			}
@@ -174,15 +174,14 @@ public class CommandHandler implements CommandExecutor {
 				return;
 			}
 			try {
-				Mineageddon.getConfigStaticly().removeAllowedWorld(args[2]);
+				Mineageddon.getWorldSystem().removeMgWorld(args[2]);
 			} catch (IllegalArgumentException e) {
 				sender.sendMessage("Error:" + e.getLocalizedMessage());
 			}
 			break;
 		case "list":
 			sender.sendMessage("Allowed Worlds: ");
-			for (String world : Mineageddon.getConfigStaticly()
-					.getAllowedWorlds()) {
+			for (String world : Mineageddon.getWorldSystem().getMgWorlds()) {
 				sender.sendMessage(world);
 			}
 			break;
