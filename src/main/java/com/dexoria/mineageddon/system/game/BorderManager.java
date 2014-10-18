@@ -1,16 +1,18 @@
 package com.dexoria.mineageddon.system.game;
 
+import java.util.Random;
+
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
+import org.bukkit.Location;
 import org.bukkit.entity.Player;
 import org.bukkit.scheduler.BukkitScheduler;
 
 import com.dexoria.mineageddon.Mineageddon;
-import com.dexoria.mineageddon.system.ISubSystem;
+import com.dexoria.mineageddon.utils.particles.ParticleEffect;
 
 public class BorderManager {
 	private int warningScheduleID;
-	private int dislayScheduleID;
 	public void onEnable() {
 		BukkitScheduler scheduler = Bukkit.getServer().getScheduler();
 		warningScheduleID = scheduler.scheduleSyncRepeatingTask(
@@ -22,9 +24,6 @@ public class BorderManager {
 		scheduler.cancelTask(warningScheduleID);
 	}
 
-	public static final double WARNING_DISTANCE_SQUARED = (51 * 51) + (51 * 51);
-	public static final double DIE_DISTANCE_SQUARED = (55 * 55) + (55 * 55);
-
 	public class BorderWarningTick implements Runnable {
 
 		public void run() {
@@ -35,11 +34,15 @@ public class BorderManager {
 					double playerZ = player.getLocation().getZ();
 					double squaredDistanceFromCenter = (playerX * playerX)
 							+ (playerZ * playerZ);
-					if (squaredDistanceFromCenter > WARNING_DISTANCE_SQUARED) {
+					int deathDistance = Mineageddon.getWorldSystem().getWorldConfig(player.getWorld().getName()).getRadius();
+					int deathDistanceSquared = (deathDistance*deathDistance)*2;
+					int waringDistanceSquared = ((deathDistance-5)*(deathDistance-5))*2;
+
+					if (squaredDistanceFromCenter > waringDistanceSquared) {
 						player.sendMessage(ChatColor.RED
 								+ "YOU ARE OUTSIDE OF THE WORLD BORDER. PLEASE HEAD BACK TOWARDS THE CENTER OR YOU WILL BE EXTERMINATED!");
 					}
-					if (squaredDistanceFromCenter > DIE_DISTANCE_SQUARED) {
+					if (squaredDistanceFromCenter > deathDistanceSquared) {
 						player.damage(10.0);
 					}
 
@@ -49,15 +52,8 @@ public class BorderManager {
 		}
 
 	}
-	
-	public class BorderDisplayTick implements Runnable {
-
-		@Override
-		public void run() {
-			// TODO Auto-generated method stub
-			
-		}
-		
-	}
 
 }
+
+
+
