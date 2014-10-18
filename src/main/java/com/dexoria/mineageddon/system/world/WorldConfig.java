@@ -72,7 +72,7 @@ public class WorldConfig {
 	}
 	
 	public double getGadgetProbability(Gadget gadget) {
-		return config.getDouble(C_PROBABILITY + CONNECTOR + gadget.getName()) / 100.0;
+		return config.getDouble(C_PROBABILITY + CONNECTOR + gadget.getName());
 		
 	}
 	

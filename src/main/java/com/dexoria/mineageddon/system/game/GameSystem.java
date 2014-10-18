@@ -144,6 +144,7 @@ public class GameSystem extends SubSystem {
 					rand.nextInt(WORLD_SIZE) - (WORLD_SIZE / 2),
 					rand.nextInt(WORLD_SIZE) - (WORLD_SIZE / 2));
 			if (spawnBlock.getType() != Material.WATER
+					&& spawnBlock.getType() != Material.FIRE
 					&& spawnBlock.getType() != Material.LAVA
 					&& spawnBlock.getType() != Material.CACTUS) {
 				loc = spawnBlock.getLocation().add(new Vector(0, 1, 0));

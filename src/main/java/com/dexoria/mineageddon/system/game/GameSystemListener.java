@@ -46,7 +46,7 @@ public class GameSystemListener implements Listener {
 
 	}
 
-	@EventHandler
+	@EventHandler(priority = EventPriority.MONITOR)
 	public void onPlayerRespawn(PlayerRespawnEvent event) {
 
 		if (Mineageddon.getGameSystem().playerOnRespawnList(event.getPlayer())) {
