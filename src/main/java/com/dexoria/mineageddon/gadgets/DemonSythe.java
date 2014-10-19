@@ -13,6 +13,8 @@ import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 
+import com.dexoria.mineageddon.utils.particles.ParticleEffect;
+
 public class DemonSythe extends Gadget {
 
 	public DemonSythe() {
@@ -30,6 +32,7 @@ public class DemonSythe extends Gadget {
 				((LivingEntity) event.getEntity())
 						.addPotionEffect(new PotionEffect(
 								PotionEffectType.POISON, 100, 1));
+				ParticleEffect.PORTAL.display(10, 10, 10, 5, 50, event.getEntity().getLocation(), 16);
 
 			}
 		}

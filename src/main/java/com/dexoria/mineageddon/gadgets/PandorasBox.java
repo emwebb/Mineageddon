@@ -13,6 +13,8 @@ import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
+import com.dexoria.mineageddon.utils.particles.ParticleEffect;
+
 public class PandorasBox extends Gadget {
 
 	public PandorasBox() {
@@ -35,7 +37,7 @@ public class PandorasBox extends Gadget {
 		}
 
 		user.damage((double) Integer.MAX_VALUE); // INFINITE DAMAGE!
-
+		ParticleEffect.EXPLODE.display(10, 10, 10, 10, 1000, user.getLocation(), 16);
 	}
 
 	@Override

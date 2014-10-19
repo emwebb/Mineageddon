@@ -33,6 +33,7 @@ public class DemonicWardStone extends Gadget {
 				true);
 		player.addPotionEffect(new PotionEffect(PotionEffectType.SATURATION,
 				20, 3), true);
+		
 	}
 
 	@Override
