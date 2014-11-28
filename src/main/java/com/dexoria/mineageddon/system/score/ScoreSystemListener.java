@@ -57,14 +57,18 @@ public class ScoreSystemListener implements Listener {
 			killedByNothing((Player) event.getEntity());
 		}
 	}
+	
 
+	@EventHandler(priority = EventPriority.MONITOR)
 	public void killedByNothing(Player player) {
 		Mineageddon.getScoreSystem()
 				.removePercentageOfPointsAndTransferToPlayersOnTheServer(
 						player.getUniqueId().toString(), 0.01f);
 
 	}
+	
 
+	@EventHandler(priority = EventPriority.MONITOR)
 	public void killedByPlayer(Player killer, Player killed) {
 		Mineageddon.getScoreSystem().transferScore(
 				killer.getUniqueId().toString(),

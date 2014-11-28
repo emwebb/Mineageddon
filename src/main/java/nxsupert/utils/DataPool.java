@@ -28,8 +28,9 @@ public class DataPool {
 		synchronized(dataMap) {
 			if(dataMap.containsKey(location)){
 				data =  dataMap.get(location);
+			} else {
+				data = null;
 			}
-			data = null;
 		}
 		
 		return data;
